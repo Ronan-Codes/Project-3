@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
     <link rel="stylesheet" href="./assets/style.css">
     <title>Pic'd Up</title>
 </head>
@@ -17,7 +19,9 @@
     <div class="container.is-max-desktop">
         <nav class="navbar mainNav" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <h1 class="title appName has-text-light">Git Shot</h1>
+                <div class="navbar-item">
+                    <h1 class="title appName has-text-light">Pic'd Up</h1>
+                </div>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
@@ -34,17 +38,62 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary">
-                                <strong>Sign up</strong>
+                            <a class="button clearColor">
+                                <i class="fas fa-home is-size-3 has-text-light"></i>
                             </a>
-                            <a class="button is-light">
-                                Log in
+                            <a class="button clearColor">
+                                <i class="fas fa-search is-size-3 has-text-light"></i>
+                            </a>
+                            <a class="button clearColor">
+                                <i class="fas fa-user-circle is-size-3 has-text-light"></i>
+                            </a>
+                            <a class="button clearColor">
+                                <i class="fas fa-sign-in-alt is-size-3 has-text-light"></i>
+                                <!-- 
+                                    If Logged-In
+                                    <i class="fas fa-sign-out-alt is-size-3 has-text-light"></i> 
+                                -->
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
+
+        <header class="columns">
+            <div class="column is-one-third">
+                <div class="card">
+                    <div class="card-image">
+                      <figure class="image">
+                        <img src="./server/assets/seedimages/Profiles/BradsPhotos.jpg" alt="Profile picture">
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <p class="title is-4 has-text-centered">John Doe</p>
+                        </div>
+                      </div>
+                  
+                      
+                    </div>
+                  </div>
+            </div>
+
+            <div class="column">
+                Hello
+            </div>
+        </header>
+
+        <main class="columns">
+            <div class="column">
+                Hi
+            </div>
+
+            <div class="column">
+                Hello
+            </div>
+        </main>
     </div>
 </body>
 
