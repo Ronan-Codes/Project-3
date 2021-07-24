@@ -131,4 +131,37 @@ button {
     padding-top: 1rem;
 }
 
+/* Search Component Styles Start */
+.dropShadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
+.browseBg {
+    background: rgb(104, 182, 182);
+    background: linear-gradient(90deg, rgba(104, 182, 182, 1) 0%, rgba(11, 79, 108, 1) 39%, rgba(76, 30, 79, 1) 71%);
+    font-size: 1.2em;
+}
+
+.browseContainer, .whiteBg {
+    background-color: white;
+}
+
+.flexCenter {
+    justify-content: center;
+}
+
+.genreContainer {
+    border-right: 1px solid rgb(206, 206, 206);
+}
+
+#searchBtn {
+    width: 20%;
+}
+
+.searchedUserPicCont {
+    border-right: 1px solid rgb(206, 206, 206);
+}
+
+.searchedUserGenre {
+    
+}
