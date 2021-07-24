@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bulma link, needs to be REACTIFIED -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <!-- Fonts, needs to be REACTIFIED? -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+
+    <!-- Icons, needs to be REACTIFIED? -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
@@ -18,6 +24,8 @@
 
 <body>
     <div class="container.is-max-desktop">
+
+        <!-- Nav Component -->
         <nav class="navbar mainNav" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <div class="navbar-item">
@@ -61,6 +69,7 @@
             </div>
         </nav>
 
+        <!-- About Me / Portfolio Component -->
         <header class="columns is-centered is-gapless">
             <div class="column is-one-fifth ml-5">
                 <div class="card">
@@ -122,81 +131,43 @@
         </section>
 
         <main class="columns is-centered">
-            <!-- <div class="column is-one-third">
-                1
-            </div>
-
-            <div class="column is-one-third">
-                1
-            </div>
-
-            <div class="column is-one-third">
-                1
-            </div> -->
-
             <div class="column columns is-four-fifths is-multiline">
-                <div class="column is-one-third-desktop is-half-tablet">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" alt="">
-                            </figure>
-                            <!-- <div class="card-content is-overlay is-clipped">
-                                <span class="tag is-info">
-                                    Photo Title That is really long to show the clipping
-                                </span>
-                            </div> -->
-                        </div>
+
+                <!-- Each DOM image will need these two containers to keep images square in preview -->
+                <div class="column is-one-third imageWrapper">
+                    <div class="imageContainer">
+                        <img src="./server/assets/seedimages/portrait/pexels-cheda-stankovic-3395708.jpg" alt="" class="portfolioImg">
                     </div>
                 </div>
 
-                <div class="column is-one-third-desktop is-half-tablet">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="./server/assets/seedimages/portrait/pexels-cheda-stankovic-3395708.jpg" alt="">
-                            </figure>
-                            <!-- <div class="card-content is-overlay is-clipped">
-                                <span class="tag is-info">
-                                    Photo Title That is really long to show the clipping
-                                </span>
-                            </div> -->
-                        </div>
+                <div class="column is-one-third imageWrapper">
+                    <div class="imageContainer">
+                        <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" alt="" width="100%" class="portfolioImg">
                     </div>
                 </div>
 
-                <div class="column is-one-third-desktop is-half-tablet">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="https://unsplash.it/300/200/?random&pic=1" alt="">
-                            </figure>
-                            <!-- <div class="card-content is-overlay is-clipped">
-                                <span class="tag is-info">
-                                    Photo Title That is really long to show the clipping
-                                </span>
-                            </div> -->
-                        </div>
+                <div class="column is-one-third imageWrapper">
+                    <div class="imageContainer">
+                        <img src="./server/assets/seedimages/portrait/Liam52.jpg" alt="" width="100%" class="portfolioImg">
                     </div>
                 </div>
 
-                <div class="column is-one-third-desktop is-half-tablet">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="https://unsplash.it/300/200/?random&pic=1" alt="">
-                            </figure>
-                            <!-- <div class="card-content is-overlay is-clipped">
-                                <span class="tag is-info">
-                                    Photo Title That is really long to show the clipping
-                                </span>
-                            </div> -->
-                        </div>
+                <div class="column is-one-third imageWrapper">
+                    <div class="imageContainer">
+                        <img src="./server/assets/seedimages/portrait/pexels-bruno-salvadori-2269872.jpg" alt="" width="100%" class="portfolioImg">
+                    </div>
+                </div>
+
+                <div class="column is-one-third imageWrapper">
+                    <div class="imageContainer">
+                        <img src="./server/assets/seedimages/portrait/GinaPix.jpg" alt="" width="100%" class="portfolioImg">
                     </div>
                 </div>
 
             </div>
         </main>
+        <!--About Me / Portfolio Component End -->
+
     </div>
 </body>
 
