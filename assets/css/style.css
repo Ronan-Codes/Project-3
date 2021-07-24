@@ -1,0 +1,90 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.mainNav {
+    background: rgb(76, 30, 79);
+    background: linear-gradient(90deg, rgba(76, 30, 79, 1) 13%, rgba(11, 79, 108, 1) 60%, rgba(104, 182, 182, 1) 100%);
+}
+
+.appName {
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+.clearColor {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.profilePic {
+    border-radius: 50%;
+}
+
+.card-footer .card-footer-item {
+    border: none;
+}
+
+.card-footer {
+    border: none;
+}
+
+#contactIcon {
+    background: url('../icons/contact.svg');
+}
+
+button {
+    width: 60%;
+    background: rgb(104, 182, 182);
+    background: linear-gradient(90deg, rgba(104, 182, 182, 1) 0%, rgba(11, 79, 108, 1) 39%, rgba(76, 30, 79, 1) 71%);
+    font-size: 1rem;
+}
+
+.aboutMeWrapper {
+    /* background-color: red; */
+    height: 60%;
+}
+
+.manageBtnWrapper {
+    /* background-color: blue; */
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manageBtn {
+
+}
+
+
+/* Portfolio Styles Start */
+#portfolioWrapper{
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.tabs a {
+    border-top-color: rgb(0, 0, 0, 0);
+    border-top-style: solid;
+    border-top-width: 1.5px;
+    padding-right: 20px;
+    color: rgb(119, 119, 119)
+}
+
+.tabs a:hover {
+    border-bottom-color: rgb(0, 0, 0, 0);
+}
+
+.tabs a:hover {
+    border-top-color: rgb(0, 0, 0);
+    border-top-style: solid;
+    border-top-width: 1.5px;
+}
+
+.tabs ul {
+    border-top-color: #dbdbdb;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-bottom: none;
+}
