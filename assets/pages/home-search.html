@@ -8,8 +8,14 @@
 
     <!-- Bulma link, needs to be REACTIFIED -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <!-- carousel -->
+
+    <!-- Carousel -->
+    <!-- <link rel="stylesheet" type="text/css" href="../slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../slick-1.8.1/slick/slick-theme.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+
+
 
     <!-- Fonts, needs to be REACTIFIED? -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,25 +187,29 @@
                             </div> -->
                         </div>
 
-                        <div class="column is-three-quarters">
-                            <div class="container">
-                                <!-- Start Carousel -->
-                                <div id="carousel-demo" class="carousel">
-                                    <div class="item-1">
-                                        <img src="../../server/assets/seedimages/Profiles/LeesAdventures.jpg"
-                                        class="profilePic p-2" alt="Profile picture">
-                                    </div>
-                                    <div class="item-2">
-                                        <img src="../../server/assets/seedimages/Profiles/LeesAdventures.jpg"
-                                        class="profilePic p-2" alt="Profile picture">
-                                    </div>
-                                    <div class="item-3">
-                                        <img src="../../server/assets/seedimages/Profiles/LeesAdventures.jpg"
-                                        class="profilePic p-2" alt="Profile picture">
-                                    </div>
-                                </div>
+                        <div class="column is-three-quarters carouselContainer">
+
+                            <!-- Start Carousel -->
+                          
+                                    <img src="../../server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg"
+                                        width="30%">
+                           
+                             
+                                    <img src="../../server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" width="
+                                        30%">
+                            
+                             
+                                    <img src="../../server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" width="
+                                        30%">
+                            
+                              
+                                    <img src="../../server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" width="
+                                        30%">
+                              
+
+
                                 <!-- End Carousel -->
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -214,7 +224,7 @@
     <script>
         bulmaCarousel.attach('#carousel-demo', {
             slidesToScroll: 1,
-            slidesToShow: 4
+            slidesToShow: 3
         });
     </script>
 
