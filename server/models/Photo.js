@@ -3,7 +3,7 @@ const userSchema = require('./User');
 const moment = require('moment');
 
 const photoSchema = new Schema({
-    photoText: {
+    photo: {
         type: String,
         required: true
     },
