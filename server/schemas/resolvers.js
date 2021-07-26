@@ -1,4 +1,5 @@
 const {Photo} = require('../models')
+const {GraphQLUpload} = require('graphql-upload');
 
 const resolvers = {
     Query: {
@@ -8,9 +9,9 @@ const resolvers = {
         }
     },
     Mutation: {
-        addPhoto: async (parent, args) => {
-            const photo = await Photo.create(args);
-            return photo;
+        addPhoto: async (parent, {photo}) => {
+            // const {createReadStream, photoName, mimetype, encoding} = await photo;
+            // const stream
         }
     }
 }
