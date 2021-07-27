@@ -7,8 +7,11 @@ const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
+const {graphqlUploadExpress} = require('graphql-upload')
 const app = express();
+app.use(graphqlUploadExpress({maxFieldSize:1000000000, maxFiles: 10}));
 const server = new ApolloServer({
+  uploads: false,
   typeDefs,
   resolvers,
   context: authMiddleware

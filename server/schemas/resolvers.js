@@ -1,7 +1,10 @@
 const {Photo} = require('../models')
-const {GraphQLUpload} = require('graphql-upload');
+const {createWriteStream} = require('fs');
+const path = require('path');
+const { GraphQLUpload } = require('graphql-upload');
 
 const resolvers = {
+    Upload: GraphQLUpload,
     Query: {
         photos: async () => {
             return Photo.find()
@@ -9,9 +12,16 @@ const resolvers = {
         }
     },
     Mutation: {
-        addPhoto: async (parent, {photo}) => {
-            // const {createReadStream, photoName, mimetype, encoding} = await photo;
-            // const stream
+        addPhoto: async (_, {photo}) => {
+            const{createReadStream, filename} = await photo;
+            console.log(photo, filename)
+            await new Promise(res => {
+                const readStream = createReadStream();
+                readStream
+                    .pipe(createWriteStream(path.join(__dirname,'../images', filename)))
+                    .on("close", res)
+            })
+            return true;
         }
     }
 }

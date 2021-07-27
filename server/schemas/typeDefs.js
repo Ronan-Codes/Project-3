@@ -3,7 +3,7 @@ const typeDefs = gql `
     # The implementation for this scalar is provided by the
     # 'GraphQLUpload' export from the 'graphql-upload' package
     # in the resolver map below.
-    #scalar Upload
+    scalar Upload
 
     type Photo {
         #_id: ID
@@ -16,7 +16,7 @@ const typeDefs = gql `
        photos: [Photo] 
     }
     type Mutation {
-        addPhoto(photo: Upload!): Photo
+        addPhoto(photo: Upload!): Boolean
     }
 `
 

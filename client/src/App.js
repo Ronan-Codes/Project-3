@@ -4,9 +4,9 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import {createUploadLink} from 'apollo-upload-client';
 
 import Home from './pages/Home';
 import NoMatch from './pages/NoMatch';
@@ -15,7 +15,7 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import AddImage from './components/AddImage';
 
-const httpLink = createHttpLink({
+const httpLink = createUploadLink({
   uri: '/graphql',
 });
 
