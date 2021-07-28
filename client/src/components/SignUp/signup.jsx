@@ -98,7 +98,7 @@ const SignUp = (props) => {
                                             </button>
                                         </div>
                                     </div>
-                                    <div><a onClick={showSignup}>Login</a></div>
+                                    <div class="has-text-centered"><a onClick={showSignup}>Login</a></div>
                                 </section>
                             </div>
                         </div>

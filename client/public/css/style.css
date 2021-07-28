@@ -72,7 +72,11 @@ button {
     border-top: 1px solid rgb(221, 221, 221);
 }
 
-.tabs a {
+.tabs .is-pointer {
+    cursor: pointer;
+}
+
+.tabs a, .tabs li {
     border-top-color: rgb(0, 0, 0, 0);
     border-top-style: solid;
     border-top-width: 1.5px;
@@ -80,8 +84,15 @@ button {
     color: rgb(119, 119, 119)
 }
 
-.tabs a:hover {
+.tabs li.active {
+    border-bottom: 1.5px solid #ddd !important;
+}
+
+.tabs a:hover, .tabs li:hover {
     border-bottom-color: rgb(0, 0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-top-style: solid;
+    border-top-width: 1.5px;
 }
 
 .tabs a:hover {
@@ -128,7 +139,7 @@ button {
 }
 
 .signupForm {
-    border-top: 1px solid rgb(206, 206, 206);
+    /*border-top: 1px solid rgb(206, 206, 206);*/
     margin-top: 1rem;
     padding-top: 1rem;
 }

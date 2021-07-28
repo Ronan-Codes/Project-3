@@ -3,7 +3,7 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <nav className="navbar mainNav" role="navigation" aria-label="main navigation">
@@ -26,15 +26,12 @@ function Nav() {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                            {loggedIn ? <Link to="/dashboard">
+                            {loggedIn ? <Link className="button clearColor" to="/dashboard">
                                 <i className="fas fa-home is-size-3 has-text-light"></i>
-                                </Link> : <Link to="/">
+                                </Link> : <Link className="button clearColor" to="/">
                                 <i className="fas fa-home is-size-3 has-text-light"></i>
                             </Link>} 
-                            {loggedIn ? 
-                            <a className="button clearColor">
-                                <i className="fas fa-user-circle is-size-3 has-text-light"></i>
-                            </a>: ''}
+                            {loggedIn ? <Link className="button clearColor" to="/profile"><i className="fas fa-user-circle is-size-3 has-text-light"></i></Link> : ''}
                             {loggedIn ? <a className="button clearColor">
                                 <i className="fas fa-sign-in-alt is-size-3 has-text-light"></i>
                             </a>
