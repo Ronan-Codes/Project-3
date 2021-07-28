@@ -26,7 +26,7 @@ const typeDefs = gql`
        photos: [Photo] 
     }
     type Mutation {
-        addPhoto(photo: Upload!): Boolean
+        addPhoto(photo: Upload!, userId: String): Boolean
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
     }
