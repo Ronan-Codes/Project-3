@@ -1,24 +1,41 @@
 import React, { useState } from "react";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { LOGIN } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
+import AuthService from '../../utils/auth';
 
 const Login = (props) => {
-    const [email, setEmail] = useState('');
+    const [login, { error }] = useMutation(LOGIN);
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [formState, setFormState] = useState({ email: '', password: '' });
 
-    const history = useHistory();
+
+    // const history = useHistory();
 
     const showSignup = () => {
         props.changeSignup(true);
     }
 
-    const handleLogin = () => {
-        history.push('/dashboard');
-        return
-        //do some type of error handling
-        //verify the email and password is not blank
-        //show an error if it is and return to exist
-        if (!email || !password){
+    const handleLogin = async (event) => {
+        // history.push('/dashboard');
+
+        event.preventDefault();
+        try {
+            const mutationResponse = await login({
+                variables: {
+                    email: formState.email,
+                    password: formState.password
+                },
+            });
+            const token = mutationResponse.data.login.token;
+            AuthService.login(token);
+        } catch (e) {
+            console.log(e);
+        }
+
+        if (!email || !password) {
             alert('Missing Email Address or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
             return
         }
@@ -32,12 +49,12 @@ const Login = (props) => {
                 password
             })
         }).then(response => response.json)
-        .then(data => {
-            console.log(data);
-        })
-        .catch(e => {
-            console.log(e)
-        })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(e => {
+                console.log(e)
+            })
 
         axios.post("some url", {
             email,
@@ -45,10 +62,18 @@ const Login = (props) => {
         }).then(data => {
             console.log(data)
         })
-        .catch(e => {
-            console.log(e)
-        })
+            .catch(e => {
+                console.log(e)
+            })
     }
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
 
     return (
         <>
