@@ -12,7 +12,7 @@ const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: '' });
 
 
-    // const history = useHistory();
+    const history = useHistory();
 
     const showSignup = () => {
         props.changeSignup(true);
@@ -31,6 +31,7 @@ const Login = (props) => {
             });
             const token = mutationResponse.data.login.token;
             AuthService.login(token);
+            window.location.assign('/dashboard');
         } catch (e) {
             console.log(e);
         }
