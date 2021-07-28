@@ -15,12 +15,17 @@
   "license": "ISC",
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "if-env": "^1.0.4",
     "slick-carousel": "^1.8.1"
 =======
     "bcrypt": "^5.0.1",
     "if-env": "^1.0.4"
 >>>>>>> eecf69d510b14901e106147732abf8746239f2eb
+=======
+    "bcrypt": "^5.0.1",
+    "if-env": "^1.0.4"
+>>>>>>> 3aaf35a8ffdbe2355a0de5e12391ca098d0c2093
   },
   "devDependencies": {
     "concurrently": "^5.1.0"

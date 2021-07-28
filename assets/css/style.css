@@ -5,6 +5,13 @@ body {
     margin: 0;
     background-color: rgba(241, 241, 241, 0.904);
     /* If you change background-color, change for .loginFormWrapper as well*/
+
+    font-family: 'Merriweather', serif;
+}
+
+button,
+select {
+    font-family: 'Merriweather', serif;
 }
 
 .mainNav {
@@ -62,9 +69,6 @@ button {
     align-items: center;
 }
 
-.manageBtn {}
-
-
 /* Portfolio Styles Start */
 #portfolioWrapper {
     border-top: 1px solid rgb(221, 221, 221);
@@ -95,7 +99,7 @@ button {
     border-bottom: none;
 }
 
-    /* Square portfolio images for preview (Modal will show correct aspect ratio)*/
+/* Square portfolio images for preview (Modal will show correct aspect ratio)*/
 .imageWrapper {
     width: 50%;
 }
@@ -115,11 +119,12 @@ button {
     object-fit: cover;
 
 }
+
 /* Portfolio Styles End */
 
 /* Login Form Styles Start */
 .loginFormWrapper {
-    position:fixed;
+    position: fixed;
     width: 100%;
     background-color: rgba(241, 241, 241, 0.904);
     bottom: 4%
@@ -142,7 +147,8 @@ button {
     font-size: 1.2em;
 }
 
-.browseContainer, .whiteBg {
+.browseContainer,
+.whiteBg {
     background-color: white;
 }
 
@@ -170,10 +176,19 @@ button {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-  }
+}
 
-  .image {
-    
+.image {
     min-width: 33%;
+}
 
-  }
+.imageUploaded {
+    min-width: 25%;
+}
+
+/* Modal Styles Start */
+.singlePhoto {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
