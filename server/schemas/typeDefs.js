@@ -1,8 +1,6 @@
-const {gql} = require('apollo-server-express');
-const typeDefs = gql `
-    # The implementation for this scalar is provided by the
-    # 'GraphQLUpload' export from the 'graphql-upload' package
-    # in the resolver map below.
+const { gql } = require('apollo-server-express');
+const typeDefs = gql`
+
     scalar Upload
 
     type Photo {
@@ -12,12 +10,27 @@ const typeDefs = gql `
         encoding: String!
         #postedAt: String
     }
+    type User {
+        _id: ID
+        username: String!
+        password: String!
+        email: String!
+        photos: [Photo]
+    }
+    type Auth {
+        token: ID!
+        user: User
+      }
+      
     type Query {
        photos: [Photo] 
     }
     type Mutation {
         addPhoto(photo: Upload!): Boolean
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
     }
+
 `
 
 module.exports = typeDefs;
