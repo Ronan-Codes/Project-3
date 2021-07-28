@@ -32,6 +32,7 @@ const SignUp = (props) => {
         });
         const token = mutationResponse.data.addUser.token;
         AuthService.login(token);
+        window.location.assign('/dashboard');
         if (!formEmail || !formPassword || !formUsername) {
             alert('Missing Email Address or Username or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
             return
