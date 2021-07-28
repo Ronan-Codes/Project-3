@@ -1,4 +1,4 @@
-const { Photo } = require('../models')
+const { Photo, User } = require('../models')
 const { createWriteStream } = require('fs');
 const path = require('path');
 const { AuthenticationError } = require('apollo-server-express');
@@ -37,27 +37,25 @@ const resolvers = {
                     .on("close", res)
             })
             return true;
+        },
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
+            return { token, user };
+        },
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+            if (!user) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+            const correctPw = await user.isCorrectPassword(password);
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+            const token = signToken(user);
+            return { token, user };
         }
-    },
-
-
-    addUser: async (parent, args) => {
-        const user = await User.create(args);
-        const token = signToken(user);
-        return { token, user };
-    },
-    login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
-        if (!user) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-        const correctPw = await user.isCorrectPassword(password);
-        if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-        const token = signToken(user);
-        return { token, user };
     }
-}
+    }
 
 module.exports = resolvers

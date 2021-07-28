@@ -10,7 +10,13 @@ const typeDefs = gql`
         encoding: String!
         #postedAt: String
     }
-    
+    type User {
+        _id: ID
+        username: String!
+        password: String!
+        email: String!
+        photos: [Photo]
+    }
     type Auth {
         token: ID!
         user: User
