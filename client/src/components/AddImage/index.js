@@ -28,7 +28,7 @@ function AddImage(){
             )}
         </div>
                 {data ? (data.photos.map((photo) => (
-                    <p>{photo.photoName}</p>
+                    <img/>
                 ))) : (<p>loading</p>)}
         </div>
         // <form action='/add' method='post' encType='multipart/form-data'>
