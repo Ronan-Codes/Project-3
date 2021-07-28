@@ -12,7 +12,8 @@
     <!-- Fonts, needs to be REACTIFIED? -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Merriweather&display=swap"
+        rel="stylesheet">
 
     <!-- Icons, needs to be REACTIFIED? -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -70,7 +71,7 @@
         </nav>
 
         <!-- About Me / Portfolio Component -->
-        <header class="columns is-centered is-gapless">
+        <header class="columns is-centered is-gapless aboutInfoContainer">
             <div class="column is-one-fifth ml-5">
                 <div class="card">
                     <div class="">
@@ -105,7 +106,8 @@
                             <h2 id="nameContainer" class="is-size-3">John Doe</h2>
                             <span id="aboutMeContainer">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                                 Dignissimos ullam, in maxime voluptatum iste nemo laboriosam facere voluptas modi id vel
-                                nulla mollitia libero, amet numquam, tempore architecto nostrum et.</span>
+                                nulla.
+                            </span>
                         </div>
                         <div class="manageBtnWrapper">
                             <button class="button has-text-light manageBtn">Manage Portfolio</button>
@@ -145,27 +147,32 @@
                                                 </div>
                                             </div>
                                         </div>
-        
+
                                     </div>
 
                                     <div class="column is-full scrolling-wrapper">
                                         <div class="imageUploaded mr-3">
-                                            <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
+                                            <img
+                                                src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
                                         </div>
                                         <div class="imageUploaded mr-3">
-                                            <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
+                                            <img
+                                                src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
                                         </div>
                                         <div class="imageUploaded mr-3">
-                                            <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
+                                            <img
+                                                src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
                                         </div>
                                         <div class="imageUploaded mr-3">
-                                            <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
+                                            <img
+                                                src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
                                         </div>
                                         <div class="imageUploaded mr-3">
-                                            <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
+                                            <img
+                                                src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg">
                                         </div>
                                     </div>
-                                    
+
                                 </section>
                                 <footer class="modal-card-foot column">
                                     <button class="button is-success" id="uploadBtn">Upload</button>
@@ -179,7 +186,7 @@
             </div>
         </header>
 
-        <section class="columns is-centered">
+        <section class="columns is-centered tabsContainer">
             <div class="column is-four-fifths">
                 <div class="tabs is-centered mt-5">
                     <ul>
@@ -193,7 +200,7 @@
             </div>
         </section>
 
-        <main class="columns is-centered">
+        <main class="columns is-centered portfolioContainer">
             <div class="column columns is-four-fifths is-multiline">
 
                 <!-- Each DOM image will need these two containers to keep images square in preview -->
@@ -236,8 +243,23 @@
         </main>
         <!--About Me / Portfolio Component End -->
 
+        <!-- MODAL for individual photo clicked from portfolio -->
+
     </div>
 </body>
+
+<!--About Me / Portfolio Component End -->
+
+<!-- MODAL for individual photo clicked from portfolio. Add `is-active` as well in .modal below to activate. -->
+<!-- <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <p class="image singlePhoto">
+            <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" alt="">
+        </p>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div> -->
 
 </html>
 
