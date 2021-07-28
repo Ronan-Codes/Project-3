@@ -6,7 +6,7 @@ const typeDefs = gql `
     scalar Upload
 
     type Photo {
-        #_id: ID
+        _id: ID
         photoName: String!
         mimetype: String!
         encoding: String!

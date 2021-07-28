@@ -3,7 +3,15 @@ const userSchema = require('./User');
 const moment = require('moment');
 
 const photoSchema = new Schema({
-    photo: {
+    photoName: {
+        type: String,
+        required: true
+    },
+    mimetype: {
+        type: String,
+        required: true
+    },
+    encoding: {
         type: String,
         required: true
     },
