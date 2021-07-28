@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Pic'd Up</title>
+</head>
+
+<body>
+    <div class="container.is-max-desktop">
+        <nav class="navbar mainNav" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <h1 class="title appName has-text-dark">Pic'd Up</h1>
+                </div>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button clearColor">
+                                <i class="fas fa-home is-size-3 has-text-dark"></i>
+                            </a>
+                            <a class="button clearColor">
+                                <i class="fas fa-user-circle is-size-3 has-text-dark"></i>
+                            </a>
+                            <a class="button clearColor">
+                                <i class="fas fa-sign-in-alt is-size-3 has-text-dark"></i>
+                                <!-- 
+                                    If Logged-In
+                                    <i class="fas fa-sign-out-alt is-size-3 has-text-light"></i> 
+                                -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <header class="columns is-centered is-gapless">
+            <div class="column is-one-fifth ml-5">
+                <div class="card">
+                    <div class="">
+                        <figure class="image">
+                            <img src="../../server/assets/seedimages/Profiles/LeesAdventures.jpg" class="profilePic p-5"
+                                alt="Profile picture">
+                        </figure>
+                    </div>
+
+                    <!-- <div class="card-content p-0">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4 has-text-centered">John Doe</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <footer class="card-footer is-size-4">
+                        <a href="#" class="card-footer-item"><i class="fas fa-envelope has-text-black"></i></a>
+                        <a href="#" class="card-footer-item"><i class="fas fa-heart has-text-danger"></i></a>
+                        <!-- Unfilled heart before being liked/clicked -->
+                        <a href="#" class="card-footer-item"><i class="fas fa-share-square has-text-black"></i></a>
+                    </footer>
+
+                </div>
+            </div>
+
+            <div class="column columns is-centered is-three-fifths">
+                <div class="column columns is-four-fifths">
+                    <div class="column is-full is-size-4 has-text-centered mt-5">
+                        <div class="aboutMeWrapper">
+                            <h2 id="nameContainer" class="is-size-3">John Doe</h2>
+                            <span id="aboutMeContainer">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                Dignissimos ullam, in maxime voluptatum iste nemo laboriosam facere voluptas modi id vel
+                                nulla mollitia libero, amet numquam, tempore architecto nostrum et.</span>
+                        </div>
+                        <div class="manageBtnWrapper">
+                            <button class="button has-text-dark manageBtn">Manage Portfolio</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="columns is-centered">
+            <div class="column is-four-fifths">
+                <div class="tabs is-centered mt-5">
+                    <ul>
+                        <!-- add .is-active to <li> is JS when picking photography genre -->
+                        <li><a>Portrait</a></li>
+                        <li><a>Weddings</a></li>
+                        <li><a>Street</a></li>
+                        <li><a>Travel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <main class="columns is-centered">
+            <!-- <div class="column is-one-third">
+                1
+            </div>
+            <div class="column is-one-third">
+                1
+            </div>
+            <div class="column is-one-third">
+                1
+            </div> -->
+
+            <div class="column columns is-four-fifths is-multiline">
+                <div class="column is-one-third-desktop is-half-tablet">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="./server/assets/seedimages/portrait/pexels-ali-pazani-3196587.jpg" alt="">
+                            </figure>
+                            <!-- <div class="card-content is-overlay is-clipped">
+                                <span class="tag is-info">
+                                    Photo Title That is really long to show the clipping
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-one-third-desktop is-half-tablet">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="./server/assets/seedimages/portrait/pexels-cheda-stankovic-3395708.jpg" alt="">
+                            </figure>
+                            <!-- <div class="card-content is-overlay is-clipped">
+                                <span class="tag is-info">
+                                    Photo Title That is really long to show the clipping
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-one-third-desktop is-half-tablet">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="https://unsplash.it/300/200/?random&pic=1" alt="">
+                            </figure>
+                            <!-- <div class="card-content is-overlay is-clipped">
+                                <span class="tag is-info">
+                                    Photo Title That is really long to show the clipping
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-one-third-desktop is-half-tablet">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="https://unsplash.it/300/200/?random&pic=1" alt="">
+                            </figure>
+                            <!-- <div class="card-content is-overlay is-clipped">
+                                <span class="tag is-info">
+                                    Photo Title That is really long to show the clipping
+                                </span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
+
+<!-- Colors
+    #4c1e4f: 13
+    #0b4f6c: 60
+    #68b6b6: 100
+-->

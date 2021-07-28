@@ -14,6 +14,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import AddImage from './components/AddImage';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 
 const httpLink = createUploadLink({
   uri: '/graphql',
@@ -42,6 +44,8 @@ function App() {
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/profile" component={Profile} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/add" component = {AddImage}/>
