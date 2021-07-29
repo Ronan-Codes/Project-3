@@ -13,6 +13,10 @@ const resolvers = {
         photos: async () => {
             return Photo.find()
                 .select('-__v')
+        },
+        userPhotos: async (parent, {userId}) => {
+            return User.findOne({_id:  userId})
+                .select('-__v')
         }
     },
     Mutation: {

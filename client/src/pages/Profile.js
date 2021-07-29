@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AuthService from '../utils/auth'
+import { useQuery } from "@apollo/client";
+import {USER_PHOTOS} from '../utils/queries'
 
 const Profile = (props) => {
+    const userToken = AuthService.getProfile();
+    console.log(userToken.data._id)
+    const {data} = useQuery(USER_PHOTOS, {
+        variables: {_id: userToken.data._id}
+    })
+    console.log(data)
+
     const [userId, setUserId] = useState('');
     const [currentTab, setCurrentTab] = useState('');
     const [loading, setLoading] = useState(true);

@@ -10,3 +10,14 @@ export const ALL_PHOTOS = gql `
         }
     }
 `
+export const USER_PHOTOS = gql `
+query userPhotos($userId: ID!){
+    userPhotos(userId: $userId){
+        _id
+        username
+        photos{
+            _id
+        }
+    }
+}
+`
