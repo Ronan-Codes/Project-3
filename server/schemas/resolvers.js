@@ -1,4 +1,4 @@
-const { Photo } = require('../models')
+const { Photo, User } = require('../models')
 const { createWriteStream } = require('fs');
 const path = require('path');
 const { AuthenticationError } = require('apollo-server-express');
