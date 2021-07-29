@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const ADD_PHOTO = gql`
-mutation addPhoto($photo: Upload!){
-    addPhoto(photo: $photo)
+mutation addPhoto($photo: Upload!, $userId: String){
+    addPhoto(photo: $photo, userId: $userId)
 }
 `
 export const LOGIN = gql`

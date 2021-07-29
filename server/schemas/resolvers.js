@@ -16,8 +16,9 @@ const resolvers = {
         }
     },
     Mutation: {
-        addPhoto: async (_, { photo }) => {
+        addPhoto: async (_, { photo, userId }) => {
             const photoObj = await photo;
+            console.log(userId)
             const photoNode = new Photo({
                 photoName: photoObj.filename,
                 mimetype: photoObj.mimetype,
@@ -36,6 +37,11 @@ const resolvers = {
                     .pipe(uploadStream)
                     .on("close", res)
             })
+            await User.findByIdAndUpdate(
+                { _id: userId },
+                { $push: { photos: photoNode._id.toString() } },
+                { new: true }
+              );
             return true;
         },
         addUser: async (parent, args) => {
