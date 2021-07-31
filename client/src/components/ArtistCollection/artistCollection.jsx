@@ -12,19 +12,19 @@ const ArtistCollection = (props) => {
                         <div className="column is-one-quarter searchedUserPicCont">
                             <div className="">
                                 <figure className="image">
-                                    <img src={props.data.profile} className="profilePic p-2" alt="Profile picture" />
+                                    <img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />
                                 </figure>
-                                <h2 className="has-text-centered is-size-4">{name}</h2>
+                                <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
                                 <h3 className="has-text-centered has-text-grey searchedUserGenre">
                                     {genres}
                                 </h3>
                             </div>
                         </div>
                         <div className="column is-three-quarters scrolling-wrapper">
-                            {props.data.images && props.data.images.length > 0 ?
-                                props.data.images.map((singleImage, idx) => (
+                            {props.data.photos && props.data.photos.length > 0 ?
+                                props.data.photos.map((singleImage, idx) => (
                                     <div key={idx} className="image mr-3">
-                                        <img src={singleImage} />
+                                        <img src={`/photo/${singleImage._id}`} />
                                     </div>
                                 ))
                             : ''}

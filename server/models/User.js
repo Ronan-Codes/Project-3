@@ -50,12 +50,9 @@ bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 
 });
 
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+userSchema.methods.isCorrectPassword = async function(password) {
+    return bcrypt.compare(password, this.password);
+  };
 
 const User = model('User', userSchema);
 

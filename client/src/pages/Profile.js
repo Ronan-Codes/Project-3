@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AuthService from '../utils/auth'
+import { useQuery } from "@apollo/client";
+import {USER_PHOTOS} from '../utils/queries'
 
 const Profile = (props) => {
+    const userToken = AuthService.getProfile();
+    console.log(userToken.data._id)
+    const {loading, data} = useQuery(USER_PHOTOS, {
+        variables: {userId: userToken.data._id}
+    })
+    let photoArray
+    let email
+    let username
+    if(!loading){
+        console.log(data.userPhotos.photos)
+        photoArray = data.userPhotos.photos
+        email = data.userPhotos.email
+        username = data.userPhotos.username
+    }
+
     const [userId, setUserId] = useState('');
     const [currentTab, setCurrentTab] = useState('');
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [currentCollection, setCurrentCollection] = useState([]);
 
     //you can create a default object or model and set it here so you don't run into empty error
@@ -65,7 +83,7 @@ const Profile = (props) => {
         const firstTab = userProfile.genres[0];
         switchTab(firstTab);
 
-        setLoading(false);
+        // setLoading(false);
     }
 
     const switchTab = (tabName) => {
@@ -91,7 +109,7 @@ const Profile = (props) => {
                                     </figure>
                                 </div>
                                 <footer class="card-footer is-size-4">
-                                    <a href={`mailto:${userProfile.email}`} class="card-footer-item"><i class="fas fa-envelope has-text-black"></i></a>
+                                    <a href={`mailto:${email}`} class="card-footer-item"><i class="fas fa-envelope has-text-black"></i></a>
                                     {userProfile.isFavorite
                                         ? <a href="#" class="card-footer-item"><i class="fas fa-heart has-text-danger"></i></a> :
                                         <a href="#" class="card-footer-item"><i class="far fa-heart has-text-danger"></i></a>}
@@ -105,7 +123,7 @@ const Profile = (props) => {
                             <div class="column columns is-four-fifths">
                                 <div class="column is-full is-size-4 has-text-centered mt-5">
                                     <div class="aboutMeWrapper">
-                                        <h2 id="nameContainer" class="is-size-3">{userProfile.name}</h2>
+                                        <h2 id="nameContainer" class="is-size-3">{username}</h2>
                                         <span id="aboutMeContainer">{userProfile.description}</span>
                                     </div>
                                     <div class="manageBtnWrapper">
@@ -129,13 +147,13 @@ const Profile = (props) => {
                     </section>
                     <main class="columns is-centered">
                         <div class="column columns is-four-fifths is-multiline">
-                            {currentCollection && currentCollection.length > 0 ?
-                                currentCollection.map((singleImage, idx) => (
+                            {photoArray && photoArray.length > 0 ?
+                                photoArray.map((p, idx) => (
                                     <div key={idx} class="column is-one-third-desktop is-half-tablet">
                                         <div class="card">
                                             <div class="card-image">
                                                 <figure class="image">
-                                                    <img src={singleImage} alt="" />
+                                                    <img src={`/photo/${p._id}`} alt="" />
                                                 </figure>
                                             </div>
                                         </div>
