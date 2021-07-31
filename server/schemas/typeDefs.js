@@ -25,6 +25,7 @@ const typeDefs = gql`
     type Query {
        photos: [Photo]
        userPhotos(userId: ID): User
+       users: [User]
     }
     type Mutation {
         addPhoto(photo: Upload!, userId: String): Boolean

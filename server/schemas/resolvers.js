@@ -17,6 +17,12 @@ const resolvers = {
         userPhotos: async (parent, {userId}) => {
             return User.findOne({_id:  userId})
                 .select('-__v')
+                .populate('photos')
+        },
+        users: async () =>{
+            return User.find()
+                .select('-__v -password')
+                .populate('photos')
         }
     },
     Mutation: {
