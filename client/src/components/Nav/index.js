@@ -2,6 +2,32 @@ import React, {useState} from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+  
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+  
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+  
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+  
+        });
+      });
+    }
+  
+  });
+
 function Nav() {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -23,7 +49,7 @@ function Nav() {
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start"></div>
 
-                <div className="navbar-end">
+                <div className="navbar-end mainNav">
                     <div className="navbar-item">
                         <div className="buttons">
                             {loggedIn ? <Link className="button clearColor" to="/dashboard">
