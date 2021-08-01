@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState} from "react";
+import AuthService from '../utils/auth'
+import { useQuery } from "@apollo/client";
+import {USER_PHOTOS} from '../utils/queries'
+import AddImage from "../components/AddImage";
+import AddProfile from "../components/AddProfile";
 
 const Profile = (props) => {
-    const [userId, setUserId] = useState('');
+    const userToken = AuthService.getProfile();
+    console.log(userToken.data._id)
+    const {loading, data} = useQuery(USER_PHOTOS, {
+        variables: {userId: userToken.data._id}
+    })
+    let photoArray
+    let email
+    let username
+    let profilePic
+    if(!loading){
+        console.log(data.userPhotos.photos)
+        photoArray = data.userPhotos.photos
+        email = data.userPhotos.email
+        username = data.userPhotos.username
+        profilePic = data.userPhotos.profilePhoto
+    }
+
     const [currentTab, setCurrentTab] = useState('');
-    const [loading, setLoading] = useState(true);
     const [currentCollection, setCurrentCollection] = useState([]);
-
-    //you can create a default object or model and set it here so you don't run into empty error
-    //make a class called UserProfile with everything set to blank and set it to the default state
-
-    /*
-        class UserProfile {
-            constructor(){
-                this.name = '';
-                this.profilePic = '';
-                this.email = '';
-                this.isFavorite = '';
-                this.description = '';
-                etc etc
-            }
-        }
-
-    */
-
-
-    //const [userProfile, setUserProfile] = useState({new UserProfile()});
 
     const [userProfile, setUserProfile] = useState({
         name: 'John Doe',
@@ -42,83 +41,55 @@ const Profile = (props) => {
         ]
     });
 
-    const getData = () => {
-        //make the call fetch/axios?
-        fetch('some url') //This is use the promise arch you can use async await
-            .then(response => response.json)
-            .then(data => {
-                console.log(data)
-            })
-            .catch(e => {
-                console.log(e)
-            })
-
-        axios.get('some url') //This is use the promise arch you can use async await
-            .then(data => {
-                console.log(data)
-            })
-            .catch(e => {
-                console.log(e)
-            })
-
-        //set the first tab
-        const firstTab = userProfile.genres[0];
-        switchTab(firstTab);
-
-        setLoading(false);
-    }
-
     const switchTab = (tabName) => {
         setCurrentTab(tabName);
         const currentColl = userProfile.collection.find(x => x.type === tabName);
         setCurrentCollection(currentColl.images);
     }
 
-    useEffect(() => {
-        getData();
-    }, [])
+    
 
     return (
         <>
             {loading ? <div>Some Loading Icon etc</div> :
                 <>
-                    <header class="columns is-centered is-gapless">
-                        <div class="column is-one-fifth ml-5">
-                            <div class="card">
-                                <div class="">
-                                    <figure class="image">
-                                        {userProfile.profilePic ? <img src={userProfile.profilePic} class="profilePic p-5" alt="Profile picture" /> : ''}
+                    <header className="columns is-centered is-gapless">
+                        <div className="column is-one-fifth ml-5">
+                            <div className="card">
+                                <div className="">
+                                    <figure className="image">
+                                        {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-5" alt="Profile picture" /> : <img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />}
                                     </figure>
                                 </div>
-                                <footer class="card-footer is-size-4">
-                                    <a href={`mailto:${userProfile.email}`} class="card-footer-item"><i class="fas fa-envelope has-text-black"></i></a>
+                                <footer className="card-footer is-size-4">
+                                    <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a>
                                     {userProfile.isFavorite
-                                        ? <a href="#" class="card-footer-item"><i class="fas fa-heart has-text-danger"></i></a> :
-                                        <a href="#" class="card-footer-item"><i class="far fa-heart has-text-danger"></i></a>}
-                                    <a href="#" class="card-footer-item"><i class="fas fa-share-square has-text-black"></i></a>
+                                        ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
+                                        <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>}
+                                    <a href="#" className="card-footer-item"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
                                 </footer>
 
                             </div>
                         </div>
 
-                        <div class="column columns is-centered is-three-fifths">
-                            <div class="column columns is-four-fifths">
-                                <div class="column is-full is-size-4 has-text-centered mt-5">
-                                    <div class="aboutMeWrapper">
-                                        <h2 id="nameContainer" class="is-size-3">{userProfile.name}</h2>
+                        <div className="column columns is-centered is-three-fifths">
+                            <div className="column columns is-four-fifths">
+                                <div className="column is-full is-size-4 has-text-centered mt-5">
+                                    <div className="aboutMeWrapper">
+                                        <h2 id="nameContainer" className="is-size-3">{username}</h2>
                                         <span id="aboutMeContainer">{userProfile.description}</span>
                                     </div>
-                                    <div class="manageBtnWrapper">
-                                        <button class="button has-text-light manageBtn">Manage Portfolio</button>
+                                    <div className="manageBtnWrapper">
+                                        <button className="button has-text-light manageBtn"><AddImage/></button>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </header>
-                    <section class="columns is-centered">
-                        <div class="column is-four-fifths">
-                            <div class="tabs is-centered mt-5">
+                    <section className="columns is-centered">
+                        <div className="column is-four-fifths">
+                            <div className="tabs is-centered mt-5">
                                 <ul>
                                     {userProfile.genres.map((singleGenre, idx) => (
                                         <li key={idx} className={`is-pointer ${currentTab === singleGenre ? 'active' : ''}`} onClick={() => switchTab(singleGenre)}>{singleGenre}</li>
@@ -127,15 +98,15 @@ const Profile = (props) => {
                             </div>
                         </div>
                     </section>
-                    <main class="columns is-centered">
-                        <div class="column columns is-four-fifths is-multiline">
-                            {currentCollection && currentCollection.length > 0 ?
-                                currentCollection.map((singleImage, idx) => (
-                                    <div key={idx} class="column is-one-third-desktop is-half-tablet">
-                                        <div class="card">
-                                            <div class="card-image">
-                                                <figure class="image">
-                                                    <img src={singleImage} alt="" />
+                    <main className="columns is-centered">
+                        <div className="column columns is-four-fifths is-multiline">
+                            {photoArray && photoArray.length > 0 ?
+                                photoArray.map((p, idx) => (
+                                    <div key={idx} className="column is-one-third-desktop is-half-tablet">
+                                        <div className="card">
+                                            <div className="card-image">
+                                                <figure className="image">
+                                                    <img src={`/photo/${p._id}`} alt="" />
                                                 </figure>
                                             </div>
                                         </div>

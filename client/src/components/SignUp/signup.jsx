@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { ADD_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import AuthService from '../../utils/auth';
@@ -9,7 +7,6 @@ const SignUp = (props) => {
     const [formUsername, setUsername] = useState('');
     const [formPassword, setPassword] = useState('');
     const [formEmail, setEmail] = useState('');
-    const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [addUser] = useMutation(ADD_USER);
 
     // const history = useHistory();
@@ -38,40 +35,7 @@ const SignUp = (props) => {
             return
         }
 
-        //do the sign up
-        //do some type of api call here - fetch/axios/something
-        // fetch("some url", {
-        //     method: 'post',
-        //     body: JSON.stringify({
-        //         email,
-        //         password
-        //     })
-        // }).then(response => response.json)
-        //     .then(data => {
-        //         console.log(data);
-        //     })
-        //     .catch(e => {
-        //         console.log(e)
-        //     })
-
-        // axios.post("some url", {
-        //     email,
-        //     password
-        // }).then(data => {
-        //     console.log(data)
-        // })
-        //     .catch(e => {
-        //         console.log(e)
-        //     })
     }
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
-    };
 
     return (
         <>

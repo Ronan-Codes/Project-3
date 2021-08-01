@@ -13,6 +13,16 @@ const resolvers = {
         photos: async () => {
             return Photo.find()
                 .select('-__v')
+        },
+        userPhotos: async (parent, {userId}) => {
+            return User.findOne({_id:  userId})
+                .select('-__v')
+                .populate('photos')
+        },
+        users: async () =>{
+            return User.find()
+                .select('-__v -password')
+                .populate('photos')
         }
     },
     Mutation: {
@@ -40,6 +50,34 @@ const resolvers = {
             await User.findByIdAndUpdate(
                 { _id: userId },
                 { $push: { photos: photoNode._id.toString() } },
+                { new: true }
+              );
+            return true;
+        },
+        addProfilePhoto: async (_, { photo, userId }) => {
+            const photoObj = await photo;
+            console.log(userId)
+            const photoNode = new Photo({
+                photoName: photoObj.filename,
+                mimetype: photoObj.mimetype,
+                encoding: photoObj.encoding
+            });
+            photoNode.save();
+            console.log(photoNode);
+            const { createReadStream } = photoObj;
+            console.log('here 1')
+            const bucket = new mongoose.mongo.GridFSBucket(connection.db, { bucketName: 'photo' });
+            console.log('here 2');
+            const uploadStream = bucket.openUploadStream(photoNode._id.toString());
+            await new Promise(res => {
+                const readStream = createReadStream();
+                readStream
+                    .pipe(uploadStream)
+                    .on("close", res)
+            })
+            await User.findByIdAndUpdate(
+                { _id: userId },
+                { $set: { profilePhoto: photoNode._id.toString() } },
                 { new: true }
               );
             return true;

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Auth from "../../utils/auth";
+import AuthService from "../../utils/auth";
 import { Link } from "react-router-dom";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,8 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 function Nav() {
-  const [loggedIn, setLoggedIn] = useState(true);
-
+//   const [loggedIn, setLoggedIn] = useState(true);
+  const handleLogout = (e) => {
+      e.preventDefault();
+      AuthService.logout();
+  }
+  const loggedIn = AuthService.loggedIn()
   return (
     <nav className="navbar mainNav" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -58,7 +62,7 @@ function Nav() {
                                 <i className="fas fa-home is-size-3 has-text-light"></i>
                             </Link>} 
                             {loggedIn ? <Link className="button clearColor" to="/profile"><i className="fas fa-user-circle is-size-3 has-text-light"></i></Link> : ''}
-                            {loggedIn ? <a className="button clearColor">
+                            {loggedIn ? <a className="button clearColor" onClick={handleLogout}>
                                 <i className="fas fa-sign-in-alt is-size-3 has-text-light"></i>
                             </a>
                             : ''}

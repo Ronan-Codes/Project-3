@@ -1,12 +1,12 @@
-import { useMutation } from '@apollo/client';
+import { useMutation} from '@apollo/client';
 import React, {useCallback} from 'react';
 import {useDropzone} from 'react-dropzone';
-import {ADD_PHOTO} from '../../utils/mutations'
+import {ADD_PROFILE_PHOTO} from '../../utils/mutations'
 import AuthService from '../../utils/auth'
 
 
-function AddImage(){
-    const [addPhoto] = useMutation(ADD_PHOTO)
+function AddProfile(){
+    const [addPhoto] = useMutation(ADD_PROFILE_PHOTO)
     const userInfo = AuthService.getProfile();
     console.log(userInfo.data._id)
     const onDrop = useCallback(
@@ -21,9 +21,9 @@ function AddImage(){
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {isDragActive ? (
-                <p>Drop Here...</p>
+                <i className="fas fa-share-square has-text-black"></i>
             ) : (
-                <p>Upload Photos</p>
+                <i className="fas fa-share-square has-text-black"></i>
             )}
         </div>
         // <form action='/add' method='post' encType='multipart/form-data'>
@@ -33,4 +33,4 @@ function AddImage(){
     )
 }
 
-export default AddImage;
+export default AddProfile;

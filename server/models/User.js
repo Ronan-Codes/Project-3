@@ -18,6 +18,7 @@ const userSchema = new Schema({
         unique: true,
         match: [/.+@.+\..+/]
     },
+    profilePhoto: { type: Schema.Types.ObjectId, ref: 'Photo' },
     photos: [{ type: Schema.Types.ObjectId, ref: 'Photo' }]
 },
 {
