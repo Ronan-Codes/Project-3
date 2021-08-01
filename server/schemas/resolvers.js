@@ -54,6 +54,34 @@ const resolvers = {
               );
             return true;
         },
+        addProfilePhoto: async (_, { photo, userId }) => {
+            const photoObj = await photo;
+            console.log(userId)
+            const photoNode = new Photo({
+                photoName: photoObj.filename,
+                mimetype: photoObj.mimetype,
+                encoding: photoObj.encoding
+            });
+            photoNode.save();
+            console.log(photoNode);
+            const { createReadStream } = photoObj;
+            console.log('here 1')
+            const bucket = new mongoose.mongo.GridFSBucket(connection.db, { bucketName: 'photo' });
+            console.log('here 2');
+            const uploadStream = bucket.openUploadStream(photoNode._id.toString());
+            await new Promise(res => {
+                const readStream = createReadStream();
+                readStream
+                    .pipe(uploadStream)
+                    .on("close", res)
+            })
+            await User.findByIdAndUpdate(
+                { _id: userId },
+                { $set: { profilePhoto: photoNode._id.toString() } },
+                { new: true }
+              );
+            return true;
+        },
         addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);

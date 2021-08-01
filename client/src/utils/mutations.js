@@ -5,6 +5,11 @@ mutation addPhoto($photo: Upload!, $userId: String){
     addPhoto(photo: $photo, userId: $userId)
 }
 `
+export const ADD_PROFILE_PHOTO = gql`
+mutation addProfilePhoto($photo: Upload!, $userId: String){
+    addProfilePhoto(photo: $photo, userId: $userId)
+}
+`
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {

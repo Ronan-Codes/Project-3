@@ -3,12 +3,12 @@ import AuthService from "../../utils/auth";
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const [loggedIn, setLoggedIn] = useState(true);
+//   const [loggedIn, setLoggedIn] = useState(true);
   const handleLogout = (e) => {
       e.preventDefault();
       AuthService.logout();
   }
-
+  const loggedIn = AuthService.loggedIn()
   return (
     <nav className="navbar mainNav" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">

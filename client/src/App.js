@@ -10,7 +10,6 @@ import {createUploadLink} from 'apollo-upload-client';
 
 import Home from './pages/Home';
 import NoMatch from './pages/NoMatch';
-import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import AddImage from './components/AddImage';
@@ -46,7 +45,6 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/profile" component={Profile} />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/add" component = {AddImage}/>
             <Route component={NoMatch} />

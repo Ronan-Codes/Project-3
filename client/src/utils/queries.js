@@ -16,6 +16,9 @@ query userPhotos($userId: ID!){
         _id
         username
         email
+        profilePhoto{
+            _id
+        }
         photos{
             _id
         }
@@ -27,6 +30,9 @@ export const USERS = gql `
         users{
             _id
             username
+            profilePhoto{
+                _id
+            }
             photos{
                 _id
             }

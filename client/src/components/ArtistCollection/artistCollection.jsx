@@ -12,7 +12,10 @@ const ArtistCollection = (props) => {
                         <div className="column is-one-quarter searchedUserPicCont">
                             <div className="">
                                 <figure className="image">
-                                    <img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />
+                                    {props.data.profilePhoto? 
+                                    (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-2" alt="Profile picture" />
+                                    ):
+                                    (<img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />)}
                                 </figure>
                                 <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
                                 <h3 className="has-text-centered has-text-grey searchedUserGenre">
