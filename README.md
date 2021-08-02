@@ -1,14 +1,14 @@
-# Water Ways
+# Pic'd Up
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   ## Description 
-  Water Ways is an online marketplace that connects people who want to rent out thier boats or pesonal watercraft with people hwo are looking for the perfect boat for their next adventure.
+  Pic'd Up provides a space for photographers and potential clients to connect. 
 
-  ### Owners
-  For owners, partnering with Water Ways is a way to earn an income from property that they already have and may be laying about, unused.
-  ### Renters
-  For those who enjoy spending time on the water, but and are looking for options that don't include a large investment. With a large selection of watercraft in multiple categories, Water Ways provides a low-cost option for you to find the perfect boat for your next adventure.
+  ### Photographers
+  Photographers can showcase their work, uploading images to their profiles and adding a short bio. 
+  ### Clients
+  Clients can browse photographer's work and receive contact information to book the perfect photographer for their event.
 
   ## Table of Contents
   * [Links](#links)
