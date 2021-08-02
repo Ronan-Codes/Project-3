@@ -42,7 +42,7 @@ function Nav() {
                     <h1 className="title appName has-text-light">Pic'd Up</h1>
                 </div>
 
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false"
+                <a role="button" className="navbar-burger " aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -50,11 +50,11 @@ function Nav() {
                 </a>
             </div>
 
-            <div id="navbarBasicExample" className="navbar-menu">
+            <div id="navbarBasicExample" className="navbar-menu mainNav">
                 <div className="navbar-start"></div>
 
-                <div className="navbar-end mainNav">
-                    <div className="navbar-item">
+                <div className="navbar-end">
+                    <div className="navbar-item ">
                         <div className="buttons">
                             {loggedIn ? <Link className="button clearColor" to="/dashboard">
                                 <i className="fas fa-home is-size-3 has-text-light"></i>
