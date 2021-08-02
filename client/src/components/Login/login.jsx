@@ -10,6 +10,10 @@ const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: '' });
 
 
+<<<<<<< HEAD
+=======
+    // const history = useHistory();
+>>>>>>> develop
 
     const showSignup = () => {
         props.changeSignup(true);
@@ -22,13 +26,12 @@ const Login = (props) => {
         try {
             const mutationResponse = await login({
                 variables: {
-                    email: email,
-                    password: password
+                    email: formState.email,
+                    password: formState.password
                 },
             });
             const token = mutationResponse.data.login.token;
             AuthService.login(token);
-            window.location.assign('/dashboard');
         } catch (e) {
             console.log(e);
         }
@@ -37,46 +40,75 @@ const Login = (props) => {
             alert('Missing Email Address or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
             return
         }
+<<<<<<< HEAD
+=======
+
+        //do the login
+        //do some type of api call here - fetch/axios/something
+        fetch("some url", {
+            method: 'post',
+            body: JSON.stringify({
+                email,
+                password
+            })
+        }).then(response => response.json)
+            .then(data => {
+                console.log(data);
+            })
+            .catch(e => {
+                console.log(e)
+            })
+
+        axios.post("some url", {
+            email,
+            password
+        }).then(data => {
+            console.log(data)
+        })
+            .catch(e => {
+                console.log(e)
+            })
+>>>>>>> develop
     }
 
     return (
         <>
-            <section className="hero is-fullheight loginFormWrapper">
-                <div className="hero-body">
-                    <div className="container">
-                        <div className="columns is-centered">
-                            <div className="column is-5-tablet is-4-desktop is-3-widescreen">
-                                <section className="box">
-                                    <div className="loginForm">
-                                        <div className="field">
-                                            <div className="control has-icons-left">
-                                                <input id="loginEmail" type="email" placeholder="Email" className="input" required
+            <section class="hero is-fullheight loginFormWrapper">
+                <div class="hero-body">
+                    <div class="container">
+                        <div class="columns is-centered">
+                            <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                                <section class="box">
+                                    <div class="loginForm">
+                                        <div class="field">
+                                            <div class="control has-icons-left">
+                                                <input id="loginEmail" type="email" placeholder="Email" class="input" required
                                                     value={email}
                                                     onChange={e => setEmail(e.target.value)}
                                                 />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fa fa-envelope"></i>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa fa-envelope"></i>
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="field">
-                                            <div className="control has-icons-left">
-                                                <input id="loginPassword" type="password" placeholder="Password" className="input" required
+                                        <div class="field">
+                                            <div class="control has-icons-left">
+                                                <input id="loginPassword" type="password" placeholder="Password" class="input" required
                                                     value={password}
                                                     onChange={e => setPassword(e.target.value)}
                                                 />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fa fa-lock"></i>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa fa-lock"></i>
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="field has-text-centered">
-                                            <button className="button is-success" onClick={handleLogin}>
+                                        <div class="field has-text-centered">
+                                            <button class="button is-success" onClick={handleLogin}>
                                                 Login
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="has-text-centered"><a onClick={showSignup}>Signup?</a></div>
+                                    <div class="has-text-centered"><a onClick={showSignup}>Signup?</a></div>
                                 </section>
                             </div>
                         </div>
