@@ -16,56 +16,78 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [Contributors](#contributors)
-  * [Questions](#questions)
   * [License](#license)
   
   ## Links
-  Production Site: [`waterwaysrentals.herokuapp.com`](https://waterwaysrentals.herokuapp.com/)<br/>
-  GitHub Repo: [`justpuzey/water-sports-xchange`](https://github.com/justpuzey/water-sports-xchange/)
+  Production Site: [`evening-refuge-82542.herokuapp.com`](https://evening-refuge-82542.herokuapp.com/)<br/>
+  GitHub Repo: [`Ronan-Codes/Project-3`](https://github.com/Ronan-Codes/Project-3)
   
   ## Techonologies
-  Water Ways uses Model-View-Controller web application framework to control data, routes, and render the UI
+  Pic'd Up uses a MERN technology stack to deliver a modern and scalable single-page apllication that is easy to maintain. The website utilizes GraphQL 
 
-  * Express - Web framework used for managing routes
-  * Sequelize - Utilizes models to manage MySQL data structures
-  * Handlebars - Leverages templates to generate front-end views
-  * Stripe - The site relies on Stripe for cart/checkout functions including payment processing and PCI data storage
-  * express session - middleware used to assits in user session managment
-  * bcrypt - Used for user password hashing
+  * MongoDB - NoSql document-oriented database, which allows for flexible and scalable data storage
+  * Express - modular, lightweight Node.js Web framework
+  * React- JavaScript library that is ideal for building interfaces for single-page applications
+  * Node- Node JS is a cross-platform, JavaScript runtime environment designed to run server-side JavaScript
+  * GraphQL - a query language for APIs that allows for improved performance through reducing the number of required calls and 
+  * JWT - JSON Web Token used to manage user authentication
   
   ## Installation
   <p><i>Steps required to install application, dependencies and configure the environment:</i></p>
 
   1. Navigate to the root folder
-  2. Create dotenv folder to store DB Name, User Name, and Password for MySQL database as well as the non-public key for Stripe
-  3. Use the command prompt to enter command: `npm install` to install dependencies
+  2. Use the command prompt to enter command: `npm run install` to install dependencies for both server and client
+  
+  ### Available Scripts
+
+  `npm start`
+
+  Runs the ap in the development environment
+  Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+  The page will reload if you make edits.\
+  You will also see any lint errors in the console.
+
+  `npm run build`
+
+  navigate to Client using `cd client` from rood directory
+
+  Builds the app for production to the `build` folder.\
+  It correctly bundles React in production mode and optimizes the build for the best performance.
+
+  The build is minified and the filenames include the hashes.\
+  Your app is ready to be deployed!
+
 
   ## Usage
   <p><i>Instructions for application usage including examples:</i></p>
 
-  ### Home Page
-  From the home page, users can login, or select a category to browse available product
-  ![home page](./public/assets/home.png)
-
-  ### Product List Page
-  The product list page allows users to view current product by category, or select All in the nav to view all available product. Users can select product to view more information
-  ![product list page](./public/assets/product-list.png)
-
-  ### Product Detail Page
-  The Product Detail Page shows additional information about the item and allows users to select a button to begin checkout process
-  ![product detail page](./public/assets/product-detail.png)
+  ### Dashboard
   
-   ### Checkout
-   Test Credit Card #: 4242424242424242
-   EXP Date: any date in future
-   CVC: any 3 digit #
+  From the [Dashboard](https://evening-refuge-82542.herokuapp.com/dashboard), clients can brows various photographers and their work
+  ![dashboard](./server/assets/readme-images/dashboard.PNG)
+
+  ### Profile
+  
+  From the [Dashboard](https://evening-refuge-82542.herokuapp.com/profile), photographers can view images that they have uploaded 
+  ![dashboard](./server/assets/readme-images/portfolio.PNG)
+
+  ### Add Images
+  
+  From the [Add New Images](https://evening-refuge-82542.herokuapp.com/add), photographers can upload or drag-drop images on this page to upload to thier portfolio
+
+
+ 
+  
+   
 
   ## Contributors
   <p><i>Project Contributors/Authors:</i></p>
   * Justin Puzey
-  * Christina Pagan
-  * Andres
-  * Candice Whiskey
+  * Nikki Misustin
+  * Ronan Galves
+  * Alex Godwin
+  * Bryan Gill
 
   ## License
   The MIT License
