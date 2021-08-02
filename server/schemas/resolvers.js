@@ -16,8 +16,9 @@ const resolvers = {
         }
     },
     Mutation: {
-        addPhoto: async (_, { photo }) => {
+        addPhoto: async (_, { photo, userId }) => {
             const photoObj = await photo;
+            console.log(userId)
             const photoNode = new Photo({
                 photoName: photoObj.filename,
                 mimetype: photoObj.mimetype,
@@ -36,28 +37,32 @@ const resolvers = {
                     .pipe(uploadStream)
                     .on("close", res)
             })
+            await User.findByIdAndUpdate(
+                { _id: userId },
+                { $push: { photos: photoNode._id.toString() } },
+                { new: true }
+              );
             return true;
+        },
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
+            return { token, user };
+        },
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+            if (!user) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+            const correctPw = await user.isCorrectPassword(password);
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+            const token = signToken(user);
+            console.log(token);
+            return { token, user };
         }
-    },
-
-
-    addUser: async (parent, args) => {
-        const user = await User.create(args);
-        const token = signToken(user);
-        return { token, user };
-    },
-    login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
-        if (!user) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-        const correctPw = await user.isCorrectPassword(password);
-        if (!correctPw) {
-            throw new AuthenticationError('Incorrect credentials');
-        }
-        const token = signToken(user);
-        return { token, user };
     }
-}
+    }
 
 module.exports = resolvers

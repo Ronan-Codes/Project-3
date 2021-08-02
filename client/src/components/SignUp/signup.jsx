@@ -6,9 +6,9 @@ import { useMutation } from '@apollo/client';
 import AuthService from '../../utils/auth';
 
 const SignUp = (props) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const [formUsername, setUsername] = useState('');
+    const [formPassword, setPassword] = useState('');
+    const [formEmail, setEmail] = useState('');
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [addUser] = useMutation(ADD_USER);
 
@@ -24,15 +24,16 @@ const SignUp = (props) => {
         event.preventDefault();
         const mutationResponse = await addUser({
             variables: {
-                username: formState.username,
-                email: formState.email,
-                password: formState.password,
+                username: formUsername,
+                email: formEmail,
+                password: formPassword
 
             },
         });
         const token = mutationResponse.data.addUser.token;
         AuthService.login(token);
-        if (!email || !password || !username) {
+        window.location.assign('/dashboard');
+        if (!formEmail || !formPassword || !formUsername) {
             alert('Missing Email Address or Username or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
             return
         }
@@ -84,7 +85,7 @@ const SignUp = (props) => {
                                         <div class="field">
                                             <div class="control has-icons-left">
                                                 <input id="signupUserName" type="text" placeholder="Username" class="input" required
-                                                    value={username}
+                                                    value={formUsername}
                                                     onChange={e => setUsername(e.target.value)}
                                                 />
                                                 <span class="icon is-small is-left">
@@ -95,7 +96,7 @@ const SignUp = (props) => {
                                         <div class="field">
                                             <div class="control has-icons-left">
                                                 <input id="signupEmail" type="email" placeholder="Email" class="input" required
-                                                    value={email}
+                                                    value={formEmail}
                                                     onChange={e => setEmail(e.target.value)}
                                                 />
                                                 <span class="icon is-small is-left">
@@ -106,7 +107,7 @@ const SignUp = (props) => {
                                         <div class="field">
                                             <div class="control has-icons-left">
                                                 <input id="signupPassword" type="password" placeholder="Password" class="input" required
-                                                    value={password}
+                                                    value={formPassword}
                                                     onChange={e => setPassword(e.target.value)}
                                                 />
                                                 <span class="icon is-small is-left">

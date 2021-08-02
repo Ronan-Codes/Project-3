@@ -10,7 +10,13 @@ const typeDefs = gql`
         encoding: String!
         #postedAt: String
     }
-    
+    type User {
+        _id: ID
+        username: String!
+        password: String!
+        email: String!
+        photos: [Photo]
+    }
     type Auth {
         token: ID!
         user: User
@@ -20,7 +26,7 @@ const typeDefs = gql`
        photos: [Photo] 
     }
     type Mutation {
-        addPhoto(photo: Upload!): Boolean
+        addPhoto(photo: Upload!, userId: String): Boolean
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
     }
