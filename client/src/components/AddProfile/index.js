@@ -21,9 +21,9 @@ function AddProfile(){
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {isDragActive ? (
-                <i className="fas fa-share-square has-text-black"></i>
+                <i className="far fa-id-badge has-text-black"></i>
             ) : (
-                <i className="fas fa-share-square has-text-black"></i>
+                <i className="far fa-id-badge has-text-black"></i>
             )}
         </div>
         // <form action='/add' method='post' encType='multipart/form-data'>
