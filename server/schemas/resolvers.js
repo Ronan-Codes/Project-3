@@ -13,6 +13,16 @@ const resolvers = {
         photos: async () => {
             return Photo.find()
                 .select('-__v')
+        },
+        userPhotos: async (parent, {userId}) => {
+            return User.findOne({_id:  userId})
+                .select('-__v')
+                .populate('photos')
+        },
+        users: async () =>{
+            return User.find()
+                .select('-__v -password')
+                .populate('photos')
         }
     },
     Mutation: {

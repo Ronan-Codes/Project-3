@@ -31,7 +31,7 @@ function AddImage(){
             )}
         </div>
                 {data ? (data.photos.map((photo) => (
-                    <img/>
+                    <img src= {`/photo/${photo._id}`}/>
                 ))) : (<p>loading</p>)}
         </div>
         // <form action='/add' method='post' encType='multipart/form-data'>
