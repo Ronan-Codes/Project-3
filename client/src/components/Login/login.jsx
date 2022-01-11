@@ -10,10 +10,7 @@ const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: '' });
 
 
-<<<<<<< HEAD
-=======
     // const history = useHistory();
->>>>>>> develop
 
     const showSignup = () => {
         props.changeSignup(true);
@@ -40,35 +37,32 @@ const Login = (props) => {
             alert('Missing Email Address or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
             return
         }
-<<<<<<< HEAD
-=======
 
-        //do the login
-        //do some type of api call here - fetch/axios/something
-        fetch("some url", {
-            method: 'post',
-            body: JSON.stringify({
-                email,
-                password
-            })
-        }).then(response => response.json)
-            .then(data => {
-                console.log(data);
-            })
-            .catch(e => {
-                console.log(e)
-            })
+        // //do the login
+        // //do some type of api call here - fetch/axios/something
+        // fetch("some url", {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //         email,
+        //         password
+        //     })
+        // }).then(response => response.json)
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        //     .catch(e => {
+        //         console.log(e)
+        //     })
 
-        axios.post("some url", {
-            email,
-            password
-        }).then(data => {
-            console.log(data)
-        })
-            .catch(e => {
-                console.log(e)
-            })
->>>>>>> develop
+        // axios.post("some url", {
+        //     email,
+        //     password
+        // }).then(data => {
+        //     console.log(data)
+        // })
+        //     .catch(e => {
+        //         console.log(e)
+        //     })
     }
 
     return (
