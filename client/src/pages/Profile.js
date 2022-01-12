@@ -5,6 +5,18 @@ import {USER_PHOTOS} from '../utils/queries'
 import AddImage from "../components/AddImage";
 import AddProfile from "../components/AddProfile";
 
+
+// import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination } from "swiper/core";
+// import 'swiper/components/navigation/navigation.min.css'
+
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
+import 'swiper/components/pagination/pagination.min.css'
+
+SwiperCore.use([Pagination]);
+
 const Profile = (props) => {
     const userToken = AuthService.getProfile();
     console.log(userToken.data._id)
@@ -64,7 +76,7 @@ const Profile = (props) => {
 
                                 <div class="imageContainer">
                                     {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
-                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-5 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-2 portfolioImg" alt="Profile picture" />}
+                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
                                 
 
@@ -105,6 +117,30 @@ const Profile = (props) => {
                             </div>
                         </div>
                     </section>
+
+                    <div className="columns is-centered">
+                        <Swiper
+                            // className="tall"
+                            // navigation
+                            
+                            pagination={{
+                                clickable: true
+                            }}
+                            spaceBetween={50}
+                            slidesPerView={3}
+                            // centeredSlides
+                            onSlideChange={() => console.log('slide change')}
+                            onSwiper={(swiper) => console.log(swiper)}
+                        >
+                            {photoArray && photoArray.length > 0 ?
+                                photoArray.map((p, idx) => (
+                            <SwiperSlide><img src={`/photo/${p._id}`} alt="Profile picture"/></SwiperSlide>
+                            ))
+                                : ''}
+                            {/* <div className="swiper-pagination swiper-pagination-timeline-page" /> */}
+                        </Swiper>
+                    </div>
+
                     <main className="columns is-centered">
                         <div className="column columns is-four-fifths is-multiline">
                             {photoArray && photoArray.length > 0 ?
