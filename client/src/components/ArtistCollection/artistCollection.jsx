@@ -43,13 +43,13 @@ const ArtistCollection = (props) => {
                                 </h3>
                             </div>
                         </div>
-                        <div className="column is-three-quarters scrolling-wrapper columns is-vcentered">
-                            <Swiper
+                        <div className="column is-three-quarters scrolling-wrapper is-vcentered">
+                            {/* <Swiper
                                 // className="tall"
                                 // className="width"
                                 className=""
                                 // navigation
-                                
+                                // setWrapperSize={true}
                                 
                                 pagination={{
                                     clickable: true
@@ -65,15 +65,23 @@ const ArtistCollection = (props) => {
                                 <SwiperSlide><img src={`/photo/${singleImage._id}`} /></SwiperSlide>
                                 ))
                                     : ''}
-                                {/* <div className="swiper-pagination swiper-pagination-timeline-page" /> */}
-                            </Swiper>
-                            {/* {props.data.photos && props.data.photos.length > 0 ?
-                                props.data.photos.map((singleImage, idx) => (
-                                    <div key={idx} className="image mr-3">
-                                        <img src={`/photo/${singleImage._id}`} />
-                                    </div>
-                                ))
-                            : ''} */}
+                            </Swiper> */}
+
+                            {/* can remove this div */}
+                            <div className="columns is-full is-vcentered">
+                                {props.data.photos && props.data.photos.length > 0 ?
+                                    props.data.photos.map((singleImage, idx) => (
+
+                                        // <div key={idx} className="image mr-3" style={{ 
+                                        //     backgroundImage: `url("/photo/${singleImage._id}")` 
+                                        //   }}>
+
+                                        <div key={idx} className="is-one-third column mr-3 image">
+                                            <img src={`/photo/${singleImage._id}`} />
+                                        </div>
+                                    ))
+                                : ''}
+                            </div>
                         </div>
                     </div>
                 </div>

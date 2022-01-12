@@ -5,17 +5,14 @@ import {USER_PHOTOS} from '../utils/queries'
 import AddImage from "../components/AddImage";
 import AddProfile from "../components/AddProfile";
 
-
-// import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination } from "swiper/core";
-// import 'swiper/components/navigation/navigation.min.css'
-
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
-import 'swiper/components/pagination/pagination.min.css'
-
-SwiperCore.use([Pagination]);
+// // import { Pagination } from 'swiper';
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import SwiperCore, { Pagination } from "swiper/core";
+// // import 'swiper/components/navigation/navigation.min.css'
+// import 'swiper/swiper-bundle.min.css'
+// import 'swiper/swiper.min.css'
+// import 'swiper/components/pagination/pagination.min.css'
+// SwiperCore.use([Pagination]);
 
 const Profile = (props) => {
     const userToken = AuthService.getProfile();
@@ -118,7 +115,7 @@ const Profile = (props) => {
                         </div>
                     </section>
 
-                    <div className="columns is-centered">
+                    {/* <div className="columns is-centered">
                         <Swiper
                             // className="tall"
                             // navigation
@@ -137,9 +134,9 @@ const Profile = (props) => {
                             <SwiperSlide><img src={`/photo/${p._id}`} alt="Profile picture"/></SwiperSlide>
                             ))
                                 : ''}
-                            {/* <div className="swiper-pagination swiper-pagination-timeline-page" /> */}
+                            //<div className="swiper-pagination swiper-pagination-timeline-page" />//
                         </Swiper>
-                    </div>
+                    </div> */}
 
                     <main className="columns is-centered">
                         <div className="column columns is-four-fifths is-multiline">

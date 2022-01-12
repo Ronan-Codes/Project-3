@@ -188,11 +188,11 @@ button {
     overflow-x: auto;
   }
 
-  .image {
+  /* .image {
     
+    max-width: 33%;
     min-width: 33%;
-
-  }
+  } */
 
 /* swiper styles start */
 .tall {
@@ -213,3 +213,5 @@ button {
     background-color: white;
 }
 /* swiper styles end */
+
+/* artistCollection Styles */
