@@ -53,14 +53,21 @@ const Profile = (props) => {
         <>
             {loading ? <div>Some Loading Icon etc</div> :
                 <>
-                    <header className="columns is-centered is-gapless">
+                    <header className="columns is-centered is-gapless ">
                         <div className="column is-one-fifth ml-5">
                             <div className="card">
-                                <div className="">
+                                {/* <div className="">
                                     <figure className="image">
                                         {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-5" alt="Profile picture" /> : <img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />}
                                     </figure>
+                                </div> */}
+
+                                <div class="imageContainer">
+                                    {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
+                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-5 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-2 portfolioImg" alt="Profile picture" />}
                                 </div>
+                                
+
                                 <footer className="card-footer is-size-4">
                                     <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a>
                                     {userProfile.isFavorite
@@ -102,19 +109,27 @@ const Profile = (props) => {
                         <div className="column columns is-four-fifths is-multiline">
                             {photoArray && photoArray.length > 0 ?
                                 photoArray.map((p, idx) => (
-                                    <div key={idx} className="column is-one-third-desktop is-half-tablet">
-                                        <div className="card">
+                                    <div key={idx} className="column is-one-third-desktop is-half-tablet imageWrapper">
+                                        {/* <div className="card">
                                             <div className="card-image">
                                                 <figure className="image">
                                                     <img src={`/photo/${p._id}`} alt="" />
                                                 </figure>
                                             </div>
+                                        </div> */}
+                                        <div class="imageContainer">
+                                            <img className="portfolioImg" src={`/photo/${p._id}`} alt="" />
                                         </div>
                                     </div>
                                 ))
                                 : ''}
                         </div>
                     </main>
+
+                    {/* <main class="columns is-centered">
+                        <div class="column columns is-four-fifths is-multiline"> */}
+
+
                 </>
             }
         </>
