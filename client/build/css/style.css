@@ -11,7 +11,10 @@ body {
     background: rgb(76, 30, 79);
     background: linear-gradient(90deg, rgba(76, 30, 79, 1) 13%, rgba(11, 79, 108, 1) 60%, rgba(104, 182, 182, 1) 100%);
 }
-
+.reverseNav {
+    background: rgb(76, 30, 79);
+    background: linear-gradient(90deg, rgba(104, 182, 182, 1) 100%, rgba(11, 79, 108, 1) 60%, rgba(76, 30, 79, 1) 13%);
+}
 .appName {
     font-family: 'Allerta Stencil', sans-serif;
 }
@@ -185,8 +188,30 @@ button {
     overflow-x: auto;
   }
 
-  .image {
+  /* .image {
     
+    max-width: 33%;
     min-width: 33%;
+  } */
 
-  }
+/* swiper styles start */
+.tall {
+    height: 200px;
+    background-color: black
+}
+
+/* .width {
+    width: 50%;
+} */
+
+.swiper-pagination .swiper-pagination-bullet {
+    opacity: 1;
+    border: white solid 1px;
+    background-color: transparent;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+    background-color: white;
+}
+/* swiper styles end */
+
+/* artistCollection Styles */

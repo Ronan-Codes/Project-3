@@ -39,3 +39,5 @@ db.once('open', () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+
+// https://picd-up-project.herokuapp.com/ | https://git.heroku.com/picd-up-project.git
