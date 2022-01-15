@@ -24,12 +24,14 @@ const Profile = (props) => {
     let email
     let username
     let profilePic
+    let description
     if(!loading){
         console.log(data.userPhotos.photos)
         photoArray = data.userPhotos.photos
         email = data.userPhotos.email
         username = data.userPhotos.username
         profilePic = data.userPhotos.profilePhoto
+        description = data.userPhotos.description
     }
 
     const [currentTab, setCurrentTab] = useState('');
@@ -40,7 +42,7 @@ const Profile = (props) => {
         profilePic: '/images/Profiles/LeesAdventures.jpg',
         email: '',
         isFavorite: false,
-        description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ullam, in maxime voluptatum iste nemo laboriosam facere voluptas modi id velnulla mollitia libero, amet numquam, tempore architecto nostrum et.',
+        // description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ullam, in maxime voluptatum iste nemo laboriosam facere voluptas modi id velnulla mollitia libero, amet numquam, tempore architecto nostrum et.',
         genres: ['Portrait', 'Weddings', 'Street', 'Travel'],
         collection: [
             { type: 'Portrait', images: ['/images/portrait/pexels-ali-pazani-3196587.jpg', '/images/portrait/pexels-ali-pazani-3196587.jpg', '/images/portrait/pexels-ali-pazani-3196587.jpg', '/images/portrait/pexels-ali-pazani-3196587.jpg', '/images/portrait/pexels-ali-pazani-3196587.jpg', '/images/portrait/pexels-ali-pazani-3196587.jpg'] },
@@ -56,7 +58,13 @@ const Profile = (props) => {
         setCurrentCollection(currentColl.images);
     }
 
-    
+    const [editModalStatus, setEditModal] = useState(false);
+    // const editModal = currentEditModal.isActive? "is-active" : "";
+    var modalStatus = editModalStatus ? "is-active" : "";
+    var toggleEditModal = () => {
+        setEditModal(!editModalStatus)
+        console.log(editModalStatus)
+    }
 
     return (
         <>
@@ -75,13 +83,35 @@ const Profile = (props) => {
                                     {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
                                     {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
-                                
+
+                                <div className="">
+                                <button className="button is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
+                                    <div className={`modal ${modalStatus}`}>
+                                        <div className="modal-background"></div>
+                                        <div className="modal-card">
+                                            <header className="modal-card-head">
+                                            <p className="modal-card-title">Modal title</p>
+                                            <button className="delete" aria-label="close" onClick={toggleEditModal}></button>
+                                            </header>
+                                            <section className="modal-card-body">
+                                            
+                                            </section>
+                                            <footer className="modal-card-foot">
+                                                {/* add mutation to save Changes and toggle editmodal */}
+                                            <button className="button is-success" >Save changes</button>
+                                            <button className="button" onClick={toggleEditModal}>Cancel</button>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <footer className="card-footer is-size-4">
                                     <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a>
                                     {userProfile.isFavorite
+                                        // add like function here
                                         ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
                                         <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>}
+                                        {/* Add profile pic button */}
                                     <a href="#" className="card-footer-item"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
                                 </footer>
 
@@ -93,10 +123,16 @@ const Profile = (props) => {
                                 <div className="column is-full is-size-4 has-text-centered mt-5">
                                     <div className="aboutMeWrapper">
                                         <h2 id="nameContainer" className="is-size-3">{username}</h2>
-                                        <span id="aboutMeContainer">{userProfile.description}</span>
+                                        {/* <span id="aboutMeContainer">{userProfile.description}</span> */}
+                                        <span id="aboutMeContainer">{description? description : "Tell us about yourself!"}</span>
+                                        
                                     </div>
                                     <div className="manageBtnWrapper">
                                         <button className="button has-text-light manageBtn"><AddImage/></button>
+                                    </div>
+                                    
+                                    <div className="editButtonWrapper">
+                                    <button className="button is-primary modal-button" data-target="modal" aria-haspopup="true">Edit Profile</button>
                                     </div>
 
                                 </div>

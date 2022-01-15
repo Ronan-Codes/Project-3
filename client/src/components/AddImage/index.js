@@ -23,7 +23,7 @@ function AddImage(){
             {isDragActive ? (
                 <p>Drop Here...</p>
             ) : (
-                <p>Upload Photos</p>
+                <p>Upload Photo</p>
             )}
         </div>
         // <form action='/add' method='post' encType='multipart/form-data'>
