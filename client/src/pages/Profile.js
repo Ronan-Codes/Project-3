@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import AuthService from '../utils/auth'
 import { useQuery, useMutation } from "@apollo/client";
 import { UPDATE_USER } from '../utils/mutations';
@@ -21,6 +21,7 @@ const Profile = (props) => {
     const {loading, data} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
+    console.log(data)
     let _id
     let photoArray
     let email
@@ -64,7 +65,6 @@ const Profile = (props) => {
     // Modal Functions
     const [updateUser] = useMutation(UPDATE_USER);
     const [editModalStatus, setEditModal] = useState(false);
-    // const editModal = currentEditModal.isActive? "is-active" : "";
     var modalStatus = editModalStatus ? "is-active" : "";
     var toggleEditModal = () => {
         setEditModal(!editModalStatus)
@@ -75,24 +75,25 @@ const Profile = (props) => {
         event.preventDefault();
         const mutationResponse = await updateUser({
           variables: {
-            description: formState.description
+            description: formState.description,
           },
         });
        
-        console.log(formState.description)
+        toggleEditModal();
+
+        console.log(mutationResponse)
     };
 
     const handleChange = (event) => {
         const { description, value } = event.target;
         setFormState({
-        //   ...formState,
-        //   [description]: value,
         description: value
         });
     };
-    // console.log(id + "Hi")
-    // console.log(email + " " + _id)
-    console.log(username)
+    
+    useEffect(()=> {
+        // fetchData();
+    }, [data]);
     
     return (
         <>

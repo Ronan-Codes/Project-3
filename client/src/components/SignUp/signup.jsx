@@ -15,6 +15,8 @@ const SignUp = (props) => {
         props.changeSignup(false);
     }
 
+    var description = ""
+
     const handleSignup = async (event) => {
 
         // history.push('/dashboard');
@@ -23,8 +25,8 @@ const SignUp = (props) => {
             variables: {
                 username: formUsername,
                 email: formEmail,
-                password: formPassword
-
+                password: formPassword,
+                description: description
             },
         });
         const token = mutationResponse.data.addUser.token;
