@@ -58,7 +58,7 @@ const Photographer = (props) => {
                                 <div className="column is-full is-size-4 has-text-centered mt-5">
                                     <div className="aboutMeWrapper">
                                         <h2 id="nameContainer" className="is-size-3">{username}</h2>
-                                        <span id="aboutMeContainer">{description? description : "Tell us about yourself!"}</span>
+                                        <span id="aboutMeContainer">{description? description : ""}</span>
                                         
                                     </div>
                                     <div className="manageBtnWrapper">
