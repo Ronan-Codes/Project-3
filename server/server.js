@@ -41,3 +41,6 @@ db.once('open', () => {
 });
 
 // https://picd-up-project.herokuapp.com/ | https://git.heroku.com/picd-up-project.git
+
+// MONGODB_URI
+// mongodb+srv://ronan-codes:26signs@cluster0.gpqkn.mongodb.net/picd-up-project?retryWrites=true&w=majority
