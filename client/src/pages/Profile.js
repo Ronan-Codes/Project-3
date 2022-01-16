@@ -94,6 +94,8 @@ const Profile = (props) => {
     useEffect(()=> {
         // fetchData();
     }, [data]);
+
+    console.log();
     
     return (
         <>
