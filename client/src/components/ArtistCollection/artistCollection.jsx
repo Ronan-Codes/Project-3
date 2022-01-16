@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,34 +15,40 @@ const ArtistCollection = (props) => {
     const genres = props && props.data && props.data.genres ? props.data.genres.join(' | ') : '';
     const name = props && props.data && props.data.name ? props.data.name : ''
 
+    // const viewPhotographer = (event) => {
+    //     window.location.assign('/profile');
+    // }
+
     return (
         <> 
             <section className="columns column is-four-fifths is-multiline mt-5">
                 <div className="column dropShadow whiteBg">
                     <div className="columns">
                         <div className="column is-one-quarter searchedUserPicCont">
-                            <div className="">
-                                {/* <figure className="image">
-                                    {props.data.profilePhoto? 
-                                    (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3" alt="Profile picture" />
-                                    ):
-                                    (<img src='/images/Profiles/user.png' className="profilePic p-3" alt="Profile picture" />)}
-                                </figure> */}
-
-                                {/* <div className=""> */}
-                                    <div className="imageContainer">
+                            <Link to={`/photographer/${props.data._id}`}>    
+                                <div className="">
+                                    {/* <figure className="image">
                                         {props.data.profilePhoto? 
-                                        (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" />
+                                        (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3" alt="Profile picture" />
                                         ):
-                                        (<img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />)}
-                                    </div>
-                                {/* </div> */}
-                                
-                                <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
-                                <h3 className="has-text-centered has-text-grey searchedUserGenre">
-                                    {genres}
-                                </h3>
-                            </div>
+                                        (<img src='/images/Profiles/user.png' className="profilePic p-3" alt="Profile picture" />)}
+                                    </figure> */}
+
+                                    {/* <div className=""> */}
+                                        <div className="imageContainer">
+                                            {props.data.profilePhoto? 
+                                            (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" />
+                                            ):
+                                            (<img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />)}
+                                        </div>
+                                    {/* </div> */}
+                                    
+                                    <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
+                                    <h3 className="has-text-centered has-text-grey searchedUserGenre">
+                                        {genres}
+                                    </h3>
+                                </div>
+                            </Link>
                         </div>
                         <div className="column is-three-quarters scrolling-wrapper is-vcentered">
                             {/* <Swiper
