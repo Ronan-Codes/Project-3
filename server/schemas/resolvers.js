@@ -99,7 +99,14 @@ const resolvers = {
             const token = signToken(user);
             console.log(token);
             return { token, user };
-        }
+        },
+        updateUser: async (parent, args, context) => {
+            if (context.user) {
+              return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+            }
+      
+            throw new AuthenticationError('Not logged in');
+          },
     }
     }
 

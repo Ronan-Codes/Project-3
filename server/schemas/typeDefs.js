@@ -13,6 +13,7 @@ const typeDefs = gql`
     type User {
         _id: ID
         username: String!
+        description: String
         password: String!
         email: String!
         profilePhoto: Photo
@@ -33,6 +34,7 @@ const typeDefs = gql`
         addProfilePhoto(photo: Upload!, userId: String): Boolean
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
+        updateUser(description: String): User
     }
 
 `

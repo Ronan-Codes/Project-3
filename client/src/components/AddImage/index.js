@@ -8,10 +8,10 @@ import AuthService from '../../utils/auth'
 function AddImage(){
     const [addPhoto] = useMutation(ADD_PHOTO)
     const userInfo = AuthService.getProfile();
-    console.log(userInfo.data._id)
+    // console.log(userInfo.data._id)
     const onDrop = useCallback(
         ([photo]) => {
-            console.log(photo)
+            // console.log(photo)
             addPhoto({variables: {photo, userId: userInfo.data._id}})
         },
         [addPhoto]

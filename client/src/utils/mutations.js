@@ -32,3 +32,11 @@ export const ADD_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser($description: String) {
+    updateUser(description: $description) {
+      user
+    }
+  }
+`;
+

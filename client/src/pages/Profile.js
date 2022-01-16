@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import AuthService from '../utils/auth'
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+import { UPDATE_USER } from '../utils/mutations';
 import {USER_PHOTOS} from '../utils/queries'
 import AddImage from "../components/AddImage";
 import AddProfile from "../components/AddProfile";
@@ -16,17 +17,19 @@ import AddProfile from "../components/AddProfile";
 
 const Profile = (props) => {
     const userToken = AuthService.getProfile();
-    console.log(userToken.data._id)
+    // console.log(userToken.data._id)
     const {loading, data} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
+    let _id
     let photoArray
     let email
     let username
     let profilePic
     let description
     if(!loading){
-        console.log(data.userPhotos.photos)
+        _id = data.userPhotos._id
+        // console.log(data.userPhotos.photos)
         photoArray = data.userPhotos.photos
         email = data.userPhotos.email
         username = data.userPhotos.username
@@ -58,14 +61,39 @@ const Profile = (props) => {
         setCurrentCollection(currentColl.images);
     }
 
+    // Modal Functions
+    const [updateUser] = useMutation(UPDATE_USER);
     const [editModalStatus, setEditModal] = useState(false);
     // const editModal = currentEditModal.isActive? "is-active" : "";
     var modalStatus = editModalStatus ? "is-active" : "";
     var toggleEditModal = () => {
         setEditModal(!editModalStatus)
-        console.log(editModalStatus)
     }
 
+    const [formState, setFormState] = useState({ description: description});
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const mutationResponse = await updateUser({
+          variables: {
+            description: formState.description
+          },
+        });
+       
+        console.log(formState.description)
+    };
+
+    const handleChange = (event) => {
+        const { description, value } = event.target;
+        setFormState({
+        //   ...formState,
+        //   [description]: value,
+        description: value
+        });
+    };
+    // console.log(id + "Hi")
+    // console.log(email + " " + _id)
+    console.log(username)
+    
     return (
         <>
             {loading ? <div>Some Loading Icon etc</div> :
@@ -84,21 +112,24 @@ const Profile = (props) => {
                                     {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
 
-                                <div className="">
-                                <button className="button is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
+                                <div className="has-text-centered">
+                                <button className="button is-small is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
                                     <div className={`modal ${modalStatus}`}>
                                         <div className="modal-background"></div>
                                         <div className="modal-card">
                                             <header className="modal-card-head">
-                                            <p className="modal-card-title">Modal title</p>
+                                            <p className="modal-card-title">Edit Profile</p>
                                             <button className="delete" aria-label="close" onClick={toggleEditModal}></button>
                                             </header>
                                             <section className="modal-card-body">
-                                            
+                                                <h2>About Me</h2>
+                                                {/* <form onSubmit={handleFormSubmit}> */}
+                                                    <textarea class="textarea" maxLength="150" placeholder="e.g. Hello world" onChange={handleChange}></textarea>
+                                                {/* </form> */}
                                             </section>
                                             <footer className="modal-card-foot">
                                                 {/* add mutation to save Changes and toggle editmodal */}
-                                            <button className="button is-success" >Save changes</button>
+                                            <button className="button is-success" onClick={handleFormSubmit}>Save changes</button>
                                             <button className="button" onClick={toggleEditModal}>Cancel</button>
                                             </footer>
                                         </div>
@@ -130,11 +161,9 @@ const Profile = (props) => {
                                     <div className="manageBtnWrapper">
                                         <button className="button has-text-light manageBtn"><AddImage/></button>
                                     </div>
-                                    
-                                    <div className="editButtonWrapper">
+                                    {/* <div className="editButtonWrapper">
                                     <button className="button is-primary modal-button" data-target="modal" aria-haspopup="true">Edit Profile</button>
-                                    </div>
-
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
