@@ -186,9 +186,10 @@ const Profile = (props) => {
                         <div className="column is-four-fifths">
                             <div className="tabs is-centered mt-5">
                                 <ul>
-                                    {userProfile.genres.map((singleGenre, idx) => (
+                                    {/* {userProfile.genres.map((singleGenre, idx) => (
                                         <li key={idx} className={`is-pointer ${currentTab === singleGenre ? 'active' : ''}`} onClick={() => switchTab(singleGenre)}>{singleGenre}</li>
-                                    ))}
+                                    ))} */}
+                                    <li className="is-pointer">Portfolio</li>
                                 </ul>
                             </div>
                         </div>
@@ -230,7 +231,9 @@ const Profile = (props) => {
                                             </div>
                                         </div> */}
                                         <div class="imageContainer">
+                                            <a href="javascript:void(0);">
                                             <img className="portfolioImg" src={`/photo/${p._id}`} onClick={() => openPhotoModal(`${p._id}`)} alt="Portfolio photo" />
+                                            </a>
                                         </div>
                                     </div>
                                 ))

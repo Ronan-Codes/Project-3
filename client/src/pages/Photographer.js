@@ -26,7 +26,17 @@ const Photographer = (props) => {
         description = data.userPhotos.description
     }
 
-    // alert(email)
+    // photoModal functions
+    const [currentModalImage, setModalImage] = useState("");
+    const [currentModalStatus, setPhotoModal] = useState(false);
+    var photoModalStatus = currentModalStatus ? "is-active" : "";
+    const openPhotoModal = (id) => {
+        setModalImage(id)
+        setPhotoModal(!currentModalStatus)
+    }
+    const closePhotoModal = () => {
+        setPhotoModal(!currentModalStatus)
+    }
 
     return (
         <>
@@ -76,7 +86,7 @@ const Photographer = (props) => {
                                     {/* {userProfile.genres.map((singleGenre, idx) => (
                                         <li key={idx} className={`is-pointer ${currentTab === singleGenre ? 'active' : ''}`} onClick={() => switchTab(singleGenre)}>{singleGenre}</li>
                                     ))} */}
-                                    <li className="is-pointer">Photos</li>
+                                    <li className="is-pointer">Portfolio</li>
                                 </ul>
                             </div>
                         </div>
@@ -89,11 +99,26 @@ const Photographer = (props) => {
                                     <div key={idx} className="column is-one-third-desktop is-half-tablet imageWrapper">
                                      
                                         <div class="imageContainer">
+                                            {/* <a>
                                             <img className="portfolioImg" src={`/photo/${p._id}`} alt="" />
+                                            </a> */}
+                                            <a >
+                                            <img className="portfolioImg" src={`/photo/${p._id}`} onClick={() => openPhotoModal(`${p._id}`)} alt="Portfolio photo" />
+                                            </a>
                                         </div>
                                     </div>
                                 ))
                                 : ''}
+                        </div>
+
+                        <div className={`modal ${photoModalStatus}`}>
+                                <div className="modal-background" onClick={closePhotoModal}></div>
+                                <div className="modal-content">
+                                    <p className="image is-fullwidth">
+                                    <img src={`/photo/${currentModalImage}`} alt="Portfolio photo modal"/>
+                                    </p>
+                                </div>
+                                <button className="modal-close is-large" onClick={closePhotoModal} aria-label="close"></button>
                         </div>
                     </main>
 

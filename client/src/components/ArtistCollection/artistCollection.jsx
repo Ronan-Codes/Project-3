@@ -25,29 +25,31 @@ const ArtistCollection = (props) => {
                 <div className="column dropShadow whiteBg">
                     <div className="columns">
                         <div className="column is-one-quarter searchedUserPicCont">
-                            <Link to={`/photographer/${props.data._id}`}>    
-                                <div className="">
-                                    {/* <figure className="image">
-                                        {props.data.profilePhoto? 
-                                        (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3" alt="Profile picture" />
-                                        ):
-                                        (<img src='/images/Profiles/user.png' className="profilePic p-3" alt="Profile picture" />)}
-                                    </figure> */}
-
-                                    {/* <div className=""> */}
-                                        <div className="imageContainer">
+                            <Link to={`/photographer/${props.data._id}`}>
+                                <a href="javascript:void(0);"> 
+                                    <div className="">
+                                        {/* <figure className="image">
                                             {props.data.profilePhoto? 
-                                            (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" />
+                                            (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3" alt="Profile picture" />
                                             ):
-                                            (<img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />)}
-                                        </div>
-                                    {/* </div> */}
-                                    
-                                    <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
-                                    <h3 className="has-text-centered has-text-grey searchedUserGenre">
-                                        {genres}
-                                    </h3>
-                                </div>
+                                            (<img src='/images/Profiles/user.png' className="profilePic p-3" alt="Profile picture" />)}
+                                        </figure> */}
+
+                                        {/* <div className=""> */}
+                                            <div className="imageContainer">
+                                                {props.data.profilePhoto? 
+                                                (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" />
+                                                ):
+                                                (<img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />)}
+                                            </div>
+                                        {/* </div> */}
+                                        
+                                        <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
+                                        <h3 className="has-text-centered has-text-grey searchedUserGenre">
+                                            {genres}
+                                        </h3>
+                                    </div>
+                                </a>   
                             </Link>
                         </div>
                         <div className="column is-three-quarters scrolling-wrapper is-vcentered">
