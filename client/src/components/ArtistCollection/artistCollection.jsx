@@ -1,16 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination } from "swiper/core";
-// import 'swiper/components/navigation/navigation.min.css'
-
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
-import 'swiper/components/pagination/pagination.min.css'
-SwiperCore.use([Pagination]);
-
 const ArtistCollection = (props) => {
     const genres = props && props.data && props.data.genres ? props.data.genres.join(' | ') : '';
     const name = props && props.data && props.data.name ? props.data.name : ''
@@ -53,29 +43,6 @@ const ArtistCollection = (props) => {
                             </Link>
                         </div>
                         <div className="column is-three-quarters scrolling-wrapper is-vcentered">
-                            {/* <Swiper
-                                // className="tall"
-                                // className="width"
-                                className=""
-                                // navigation
-                                // setWrapperSize={true}
-                                
-                                pagination={{
-                                    clickable: true
-                                }}
-                                spaceBetween={0}
-                                slidesPerView={3}
-                                // centeredSlides
-                                onSlideChange={() => console.log('slide change')}
-                                onSwiper={(swiper) => console.log(swiper)}
-                            >
-                                {props.data.photos && props.data.photos.length > 0 ?
-                                props.data.photos.map((singleImage, idx) => (
-                                <SwiperSlide><img src={`/photo/${singleImage._id}`} /></SwiperSlide>
-                                ))
-                                    : ''}
-                            </Swiper> */}
-
                             {/* can remove this div */}
                             <div className="columns is-full is-vcentered">
                                 {props.data.photos && props.data.photos.length > 0 ?

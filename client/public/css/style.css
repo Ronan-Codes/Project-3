@@ -187,30 +187,7 @@ button {
     overflow-x: auto;
   }
 
-  /* .image {
-    
-    max-width: 33%;
-    min-width: 33%;
-  } */
-
-/* swiper styles start */
-.tall {
-    height: 200px;
-    background-color: black
-}
-
-/* .width {
-    width: 50%;
+/* .profileCardColor {
+    background: none;
+    box-shadow: none
 } */
-
-.swiper-pagination .swiper-pagination-bullet {
-    opacity: 1;
-    border: white solid 1px;
-    background-color: transparent;
-}
-.swiper-pagination .swiper-pagination-bullet-active {
-    background-color: white;
-}
-/* swiper styles end */
-
-/* artistCollection Styles */
