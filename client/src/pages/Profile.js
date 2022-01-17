@@ -62,7 +62,7 @@ const Profile = (props) => {
         setCurrentCollection(currentColl.images);
     }
 
-    // Modal Functions
+    // editModal Functions
     const [updateUser] = useMutation(UPDATE_USER);
     const [editModalStatus, setEditModal] = useState(false);
     var modalStatus = editModalStatus ? "is-active" : "";
@@ -90,12 +90,23 @@ const Profile = (props) => {
         description: value
         });
     };
+    // editModal Function End
     
     useEffect(()=> {
         // fetchData();
     }, [data]);
 
-    console.log();
+    // photoModal functions
+    const [currentModalImage, setModalImage] = useState("");
+    const [currentModalStatus, setPhotoModal] = useState(false);
+    var photoModalStatus = currentModalStatus ? "is-active" : "";
+    const openPhotoModal = (id) => {
+        setModalImage(id)
+        setPhotoModal(!currentModalStatus)
+    }
+    const closePhotoModal = () => {
+        setPhotoModal(!currentModalStatus)
+    }
     
     return (
         <>
@@ -118,7 +129,7 @@ const Profile = (props) => {
                                 <div className="has-text-centered">
                                 <button className="button is-small is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
                                     <div className={`modal ${modalStatus}`}>
-                                        <div className="modal-background"></div>
+                                        <div className="modal-background" onClick={toggleEditModal}></div>
                                         <div className="modal-card">
                                             <header className="modal-card-head">
                                             <p className="modal-card-title">Edit Profile</p>
@@ -219,11 +230,21 @@ const Profile = (props) => {
                                             </div>
                                         </div> */}
                                         <div class="imageContainer">
-                                            <img className="portfolioImg" src={`/photo/${p._id}`} alt="" />
+                                            <img className="portfolioImg" src={`/photo/${p._id}`} onClick={() => openPhotoModal(`${p._id}`)} alt="Portfolio photo" />
                                         </div>
                                     </div>
                                 ))
                                 : ''}
+                        </div>
+
+                        <div className={`modal ${photoModalStatus}`}>
+                                <div className="modal-background" onClick={closePhotoModal}></div>
+                                <div className="modal-content">
+                                    <p className="image is-fullwidth">
+                                    <img src={`/photo/${currentModalImage}`} alt="Portfolio photo modal"/>
+                                    </p>
+                                </div>
+                                <button className="modal-close is-large" onClick={closePhotoModal} aria-label="close"></button>
                         </div>
                     </main>
 
