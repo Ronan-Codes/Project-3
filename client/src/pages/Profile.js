@@ -103,9 +103,10 @@ const Profile = (props) => {
         <>
             {loading ? <div>Some Loading Icon etc</div> :
                 <>
-                    <header className="columns is-centered is-gapless is-mobile">
-                        <div className="column is-one-fifth-tablet is-one-third-mobile">
-                            <div className="card ml-2 mt-2">
+                    <header className="columns is-centered is-gapless is-mobile pl-2">
+                        {/* card option below */}
+                        <div className="column is-one-fifth-tablet is-one-third-mobile mt-2">
+                            <div className="">
                                 {/* <div className="mt-2"> */}
                                     {/* <div className="">
                                         <figure className="image">
@@ -115,14 +116,16 @@ const Profile = (props) => {
 
                                 <div class="imageContainer">
                                     {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
-                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-4 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
+                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
+                                    <button class="addProfile is-size-2-widescreen is-size-3-desktop is-size-5-tablet is-size-7-mobile"><AddProfile><i class="fas fa-plus"></i></AddProfile></button>
+                                    {/* <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a> */}
                                 </div>
 
                                 <div className="has-text-centered">
                                 {/* <h2 className="is-size-5 is-hidden-tablet">{username}</h2> */}
                                 {/* <span className="is-size-7 is-hidden-tablet">{description? description : "Tell us about yourself!"}</span> */}
 
-                                    {/* <button className="button is-small is-primary modal-button is-hidden-mobile" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
+                                {/* <button className="button is-small is-primary modal-button is-hidden-mobile" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
                                 {/* <button className="button is-small has-text-light is-hidden-tablet is-size-7-mobile"><AddImage/></button> */}
 
                                     <div className={`modal ${modalStatus}`}>
@@ -132,41 +135,53 @@ const Profile = (props) => {
                                             <p className="modal-card-title">Edit Profile</p>
                                             <button className="delete" aria-label="close" onClick={toggleEditModal}></button>
                                             </header>
+                                            {/* <section className="modal-card-body p-0">
+                                                <h2>Edit Profile Picture </h2>
+                                                <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
+
+                                            </section> */}
                                             <section className="modal-card-body">
+                                                {/* <h2>Edit Profile Picture </h2>
+                                                <button className="button is-small has-text-light is-size-7-mobile"><AddImage/></button> */}
+
                                                 <h2>About Me</h2>
                                                 {/* <form onSubmit={handleFormSubmit}> */}
                                                     <textarea class="textarea" maxLength="150" placeholder="e.g. Hello world" onChange={handleChange}></textarea>
                                                 {/* </form> */}
+                                                
                                             </section>
                                             <footer className="modal-card-foot">
                                                 {/* add mutation to save Changes and toggle editmodal */}
                                             <button className="button is-success" onClick={handleFormSubmit}>Save changes</button>
-                                            <button className="button" onClick={toggleEditModal}>Cancel</button>
+                                            <button className="button is-success" onClick={toggleEditModal}>Cancel</button>
                                             </footer>
                                         </div>
                                     </div>
                                 </div>
 
                                 <footer className="card-footer is-size-4 is-size-6-mobile">
-                                    <a href={`mailto:${email}`} className="card-footer-item pt-0 pb-1"><i className="fas fa-envelope has-text-black"></i></a>
-                                    
-                                    {/* Not needed for own profile? */}
-                                    {/* {userProfile.isFavorite
-                                        ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
-                                        <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>} */}
 
-                                        {/* Edit profile pic button, make more obvious for user */}
-                                    <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
+                                        {/* Not needed for own profile? */}
+                                        {/* {userProfile.isFavorite
+                                            ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
+                                            <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>} */}
+
+                                            {/* Edit profile pic button, make more obvious for user */}
+
+                                    {/* <a href={`mailto:${email}`} className="card-footer-item pt-0 pb-1"><i className="fas fa-envelope has-text-black"></i></a> */}
+                                    {/* <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a> */}
                                 </footer>
 
                             </div>
                         </div>
 
-                        <div className="column is-centered is-two-fifths-tablet is-two-thirds-mobile">
-                            <div className="column columns is-full">
-                                <div className="column is-full has-text-centered">
-                                    <div className="aboutMeWrapper pt-5-mobile pt-3-tablet ">
+                        <div className="column columns is-centered is-two-fifths-tablet is-two-thirds-mobile">
+                            <div className="column columns is-full ">
+                                {/* card option below */}
+                                <div className="column is-full  ml-1 mt-2 mr-2">
+                                    <div className="aboutMeWrapper  ">
                                         <h2 className="is-size-3 is-size-5-mobile">{username}</h2>
+                                        <p className="is-size-5 is-size-7-mobile"><a href={`mailto:${email}`}><i className="fas fa-envelope has-text-black"></i>: {`${email}`}</a></p>
                                         <span className="is-size-5 is-size-7-mobile long-word-break">{description? description : "Tell us about yourself!"}</span>
                                         
                                     </div>
@@ -190,7 +205,7 @@ const Profile = (props) => {
 
                     <div className="columns is-centered has-text-centered is-mobile mx-2">
                         <div className="column is-three-fifths-tablet is-full-mobile">
-                            <div className="columns is-mobile">
+                            <div className="columns is-mobile customMargin">
                                 <div className="column is-two-fourths-mobile p-0 mr-1">
                                     <button className="btnInProfile button is-size-7-mobile is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
                                     {/* <button className="button is-size-7-mobile has-text-light"><AddImage/></button> */}
