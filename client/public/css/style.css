@@ -7,6 +7,12 @@ body {
     /* If you change background-color, change for .loginFormWrapper as well*/
 }
 
+* { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
 .mainNav {
     background: rgb(76, 30, 79);
     background: linear-gradient(90deg, rgba(76, 30, 79, 1) 13%, rgba(11, 79, 108, 1) 60%, rgba(104, 182, 182, 1) 100%);
@@ -46,10 +52,10 @@ body {
 }
 
 button {
-    width: 60%;
+    /* width: 60%; */
     background: rgb(104, 182, 182);
     background: linear-gradient(90deg, rgba(104, 182, 182, 1) 0%, rgba(11, 79, 108, 1) 39%, rgba(76, 30, 79, 1) 71%);
-    font-size: 1rem;
+    /* font-size: 1rem; */
 }
 
 .aboutMeWrapper {
@@ -64,11 +70,6 @@ button {
     justify-content: center;
     align-items: center;
 }
-
-.manageBtn {
-    font: 100;
-}
-
 
 /* Portfolio Styles Start */
 #portfolioWrapper {
@@ -130,6 +131,14 @@ button {
     object-fit: cover;
 
 }
+
+.btnInProfile {
+    width: 100%;
+}
+
+.long-word-break {
+    word-wrap: break-word
+}
 /* Portfolio Styles End */
 
 /* Login Form Styles Start */
@@ -190,4 +199,11 @@ button {
 /* .profileCardColor {
     background: none;
     box-shadow: none
+} */
+
+
+/* @media screen and (max-width: 768px) {
+    .zero-margin {
+        margin-left: 0;
+    }
 } */

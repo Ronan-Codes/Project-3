@@ -103,22 +103,28 @@ const Profile = (props) => {
         <>
             {loading ? <div>Some Loading Icon etc</div> :
                 <>
-                    <header className="columns is-centered is-gapless ">
-                        <div className="column is-one-fifth ml-5">
-                            <div className="card">
-                                {/* <div className="">
-                                    <figure className="image">
-                                        {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-5" alt="Profile picture" /> : <img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />}
-                                    </figure>
-                                </div> */}
+                    <header className="columns is-centered is-gapless is-mobile">
+                        <div className="column is-one-fifth-tablet is-one-third-mobile">
+                            <div className="card ml-2 mt-2">
+                                {/* <div className="mt-2"> */}
+                                    {/* <div className="">
+                                        <figure className="image">
+                                            {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-5" alt="Profile picture" /> : <img src='/images/Profiles/LeesAdventures.jpg' className="profilePic p-2" alt="Profile picture" />}
+                                        </figure>
+                                    </div> */}
 
                                 <div class="imageContainer">
                                     {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
-                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
+                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-4 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
 
                                 <div className="has-text-centered">
-                                <button className="button is-small is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
+                                {/* <h2 className="is-size-5 is-hidden-tablet">{username}</h2> */}
+                                {/* <span className="is-size-7 is-hidden-tablet">{description? description : "Tell us about yourself!"}</span> */}
+
+                                    {/* <button className="button is-small is-primary modal-button is-hidden-mobile" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
+                                {/* <button className="button is-small has-text-light is-hidden-tablet is-size-7-mobile"><AddImage/></button> */}
+
                                     <div className={`modal ${modalStatus}`}>
                                         <div className="modal-background" onClick={toggleEditModal}></div>
                                         <div className="modal-card">
@@ -141,8 +147,8 @@ const Profile = (props) => {
                                     </div>
                                 </div>
 
-                                <footer className="card-footer is-size-4">
-                                    <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a>
+                                <footer className="card-footer is-size-4 is-size-6-mobile">
+                                    <a href={`mailto:${email}`} className="card-footer-item pt-0 pb-1"><i className="fas fa-envelope has-text-black"></i></a>
                                     
                                     {/* Not needed for own profile? */}
                                     {/* {userProfile.isFavorite
@@ -150,33 +156,65 @@ const Profile = (props) => {
                                         <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>} */}
 
                                         {/* Edit profile pic button, make more obvious for user */}
-                                    <a href="#" className="card-footer-item"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
+                                    <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
                                 </footer>
 
                             </div>
                         </div>
 
-                        <div className="column columns is-centered is-three-fifths">
-                            <div className="column columns is-four-fifths">
-                                <div className="column is-full is-size-4 has-text-centered mt-5">
-                                    <div className="aboutMeWrapper">
-                                        <h2 id="nameContainer" className="is-size-3">{username}</h2>
-                                        {/* <span id="aboutMeContainer">{userProfile.description}</span> */}
-                                        <span id="aboutMeContainer">{description? description : "Tell us about yourself!"}</span>
+                        <div className="column is-centered is-two-fifths-tablet is-two-thirds-mobile">
+                            <div className="column columns is-full">
+                                <div className="column is-full has-text-centered">
+                                    <div className="aboutMeWrapper pt-5-mobile pt-3-tablet ">
+                                        <h2 className="is-size-3 is-size-5-mobile">{username}</h2>
+                                        <span className="is-size-5 is-size-7-mobile long-word-break">{description? description : "Tell us about yourself!"}</span>
                                         
                                     </div>
-                                    <div className="manageBtnWrapper">
-                                        <button className="button has-text-light manageBtn"><AddImage/></button>
-                                    </div>
-                                    {/* <div className="editButtonWrapper">
-                                    <button className="button is-primary modal-button" data-target="modal" aria-haspopup="true">Edit Profile</button>
+                                    {/* <div className="manageBtnWrapper">
+                                        <button className="button is-size-7-mobile has-text-light is-hidden-mobile"><AddImage/></button>
                                     </div> */}
                                 </div>
                             </div>
                         </div>
+
                     </header>
+
+                    {/* <div className="columns is-centered has-text-centered is-mobile is-hidden-tablet mx-2">
+                        <div className="column is-two-fourths-mobile p-0 mr-1">
+                            <button className="btnInProfile button is-size-7-mobile is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
+                        </div>
+                        <div className="column is-two-fourths-mobile p-0 ml-1">
+                            <button className="btnInProfile button is-size-7-mobile has-text-light"><AddImage/></button>
+                        </div>
+                    </div> */}
+
+                    <div className="columns is-centered has-text-centered is-mobile mx-2">
+                        <div className="column is-three-fifths-tablet is-full-mobile">
+                            <div className="columns is-mobile">
+                                <div className="column is-two-fourths-mobile p-0 mr-1">
+                                    <button className="btnInProfile button is-size-7-mobile is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
+                                    {/* <button className="button is-size-7-mobile has-text-light"><AddImage/></button> */}
+                                </div>
+                                <div className="column is-two-fourths-mobile p-0 ml-1">
+                                    {/* <button className="button is-size-7-mobile is-primary modal-button is-hidden-tablet" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
+                                    <button className="btnInProfile button is-size-7-mobile has-text-light"><AddImage/></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* removed is-hidden-tablet version */}
+                    {/* <div className="columns is-centered has-text-centered is-mobile  mx-2">
+                        <div className="column is-one-fifth is-two-fourths-mobile p-0 mr-1">
+                            <button className="btnInProfile button is-size-7-mobile is-primary modal-button" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button>
+                        </div>
+                        <div className="column is-one-fifth is-two-fourths-mobile p-0 ml-1">
+                            <button className="btnInProfile button is-size-7-mobile has-text-light"><AddImage/></button>
+                        </div>
+                    </div> */}
+
                     <section className="columns is-centered">
-                        <div className="column is-four-fifths">
+                        <div className="column is-three-fifths pb-0 pt-0">
                             <div className="tabs is-centered mt-5">
                                 <ul>
                                     {/* {userProfile.genres.map((singleGenre, idx) => (
@@ -189,10 +227,10 @@ const Profile = (props) => {
                     </section>
 
                     <main className="columns is-centered">
-                        <div className="column columns is-four-fifths is-multiline">
+                        <div className="column columns is-three-fifths is-multiline is-mobile m-1 ">
                             {photoArray && photoArray.length > 0 ?
                                 photoArray.map((p, idx) => (
-                                    <div key={idx} className="column is-one-third-desktop is-half-tablet imageWrapper">
+                                    <div key={idx} className="column is-one-third-tablet is-one-third-mobile imageWrapper p-1">
                                         {/* <div className="card">
                                             <div className="card-image">
                                                 <figure className="image">
