@@ -42,33 +42,32 @@ const Photographer = (props) => {
         <>
             {loading ? <div>Some Loading Icon etc</div> :
                 <>
-                    <header className="columns is-centered is-gapless ">
-                        <div className="column is-one-fifth ml-5">
-                            <div className="card">
+                    <header className="columns is-centered is-gapless is-mobile pl-2">
+                        <div className="column is-one-fifth-tablet is-one-third-mobile mt-2">
+                            <div className="">
                                 <div class="imageContainer">
                                 {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
 
-                                <footer className="card-footer is-size-4">
-                                    <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a>
+                                {/* <footer className="card-footer is-size-4">
+                                    <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a> */}
+
                                     {/* {userProfile.isFavorite
                                         // add like function here
                                         ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
                                         <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>} */}
-                                    <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a>
-
-
-                                </footer>
+                                    {/* <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a>
+                                </footer> */}
 
                             </div>
                         </div>
 
-                        <div className="column columns is-centered is-three-fifths">
-                            <div className="column columns is-four-fifths">
-                                <div className="column is-full is-size-4 has-text-centered mt-5">
+                        <div className="column columns is-centered is-two-fifths-tablet is-two-thirds-mobile">
+                            <div className="column columns is-full ">
+                                <div className="column is-full  ml-1 mt-2 mr-2">
                                     <div className="aboutMeWrapper">
-                                        <h2 id="nameContainer" className="is-size-3">{username}</h2>
-                                        <span id="aboutMeContainer">{description? description : ""}</span>
+                                        <h2 className="is-size-3 is-size-5-mobile">{username}</h2>
+                                        <span className="is-size-5 is-size-7-mobile long-word-break">{description? description : ""}</span>
                                         
                                     </div>
                                     <div className="manageBtnWrapper">
@@ -79,8 +78,24 @@ const Photographer = (props) => {
                             </div>
                         </div>
                     </header>
+
+                    <div className="columns is-centered has-text-centered is-mobile mx-2">
+                        <div className="column is-three-fifths-tablet is-full-mobile">
+                            <div className="columns is-mobile customMargin">
+                                <div className="column is-two-fourths-mobile p-0 mr-1">
+                                    <button className="btnInProfile button is-size-7-mobile is-primary">Follow</button>
+                                    {/* <button className="button is-size-7-mobile has-text-light"><AddImage/></button> */}
+                                </div>
+                                <div className="column is-two-fourths-mobile p-0 ml-1">
+                                    {/* <button className="button is-size-7-mobile is-primary modal-button is-hidden-tablet" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
+                                    <button className="btnInProfile button is-size-7-mobile has-text-light">Email</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <section className="columns is-centered">
-                        <div className="column is-four-fifths">
+                        <div className="column is-three-fifths pb-0 pt-0">
                             <div className="tabs is-centered mt-5">
                                 <ul>
                                     {/* {userProfile.genres.map((singleGenre, idx) => (
@@ -93,16 +108,16 @@ const Photographer = (props) => {
                     </section>
 
                     <main className="columns is-centered">
-                        <div className="column columns is-four-fifths is-multiline">
+                        <div className="column columns is-three-fifths is-multiline is-mobile m-1 ">
                             {photoArray && photoArray.length > 0 ?
                                 photoArray.map((p, idx) => (
-                                    <div key={idx} className="column is-one-third-desktop is-half-tablet imageWrapper">
+                                    <div key={idx} className="column is-one-third-tablet is-one-third-mobile imageWrapper p-1">
                                      
                                         <div class="imageContainer">
                                             {/* <a>
                                             <img className="portfolioImg" src={`/photo/${p._id}`} alt="" />
                                             </a> */}
-                                            <a >
+                                            <a href="javascript:void(0);">
                                             <img className="portfolioImg" src={`/photo/${p._id}`} onClick={() => openPhotoModal(`${p._id}`)} alt="Portfolio photo" />
                                             </a>
                                         </div>
