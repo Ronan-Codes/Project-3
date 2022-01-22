@@ -139,6 +139,22 @@ button {
 .long-word-break {
     word-wrap: break-word
 }
+
+.addProfile {
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background: rgb(103, 103, 103);
+    color: rgb(255, 255, 255);
+    /* font-size: 16px; */
+    /* font-size: 2rem; */
+    padding: .5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
 /* Portfolio Styles End */
 
 /* Login Form Styles Start */
@@ -201,37 +217,26 @@ button {
     box-shadow: none
 } */
 
-.addProfile {
-    position: absolute;
-    top: 80%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background: rgb(103, 103, 103);
-    color: rgb(255, 255, 255);
-    /* font-size: 16px; */
-    /* font-size: 2rem; */
-    padding: .5rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-  }
+/* Dashboard Styles */
+/*  */
+
 
 @media screen and (min-width: 769px) {
     .customMargin{
         margin-top: .1em;
     }
+
+    .profilePicCustomPadding {
+        padding: 1.2rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    /* .zero-margin {
-        margin-left: 0;
-    } */
     .btnInProfile {
         width: 100%;
     }
 
-    /* .addProfile {
-        font-size: .5rem;
-    } */
+    .profilePicCustomPadding {
+        padding: .1rem;
+    }
 }

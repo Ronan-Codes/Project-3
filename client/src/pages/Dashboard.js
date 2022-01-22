@@ -14,7 +14,7 @@ const Dashboard = (props) => {
 
     return (
         <>  
-            <div className="columns is-centered is-gapless mt-5 is-multiline">
+            <div className="columns is-centered is-gapless mt-4 is-multiline mx-2">
                 { data.users.map((singleCollection, idx) => (
                     <ArtistCollection key={idx} data={singleCollection}/>
                 ))

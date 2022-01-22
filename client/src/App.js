@@ -17,6 +17,8 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Photographer from './pages/Photographer'
 
+import "./index.css"
+
 const httpLink = createUploadLink({
   uri: '/graphql',
 });

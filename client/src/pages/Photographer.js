@@ -88,7 +88,7 @@ const Photographer = (props) => {
                                 </div>
                                 <div className="column is-two-fourths-mobile p-0 ml-1">
                                     {/* <button className="button is-size-7-mobile is-primary modal-button is-hidden-tablet" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
-                                    <button className="btnInProfile button is-size-7-mobile has-text-light">Email</button>
+                                    <a href={`mailto:${email}`}><button className="btnInProfile button is-size-7-mobile has-text-light">Email</button></a>
                                 </div>
                             </div>
                         </div>

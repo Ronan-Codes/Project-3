@@ -11,9 +11,9 @@ const ArtistCollection = (props) => {
 
     return (
         <> 
-            <section className="columns column is-four-fifths is-multiline mt-5">
+            <section className="columns column is-four-fifths is-multiline mb-4">
                 <div className="column dropShadow whiteBg">
-                    <div className="columns">
+                    <div className="columns is-mobile">
                         <div className="column is-one-quarter searchedUserPicCont">
                             <Link to={`/photographer/${props.data._id}`}>
                                 <a href="javascript:void(0);"> 
@@ -28,13 +28,13 @@ const ArtistCollection = (props) => {
                                         {/* <div className=""> */}
                                             <div className="imageContainer">
                                                 {props.data.profilePhoto? 
-                                                (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" />
+                                                (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />
                                                 ):
-                                                (<img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />)}
+                                                (<img src='/images/Profiles/user.png' className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />)}
                                             </div>
                                         {/* </div> */}
                                         
-                                        <h2 className="has-text-centered is-size-4">{props.data.username}</h2>
+                                        <h2 className="has-text-centered is-size-4-tablet is-size-7-mobile">{props.data.username}</h2>
                                         <h3 className="has-text-centered has-text-grey searchedUserGenre">
                                             {genres}
                                         </h3>
@@ -44,7 +44,7 @@ const ArtistCollection = (props) => {
                         </div>
                         <div className="column is-three-quarters scrolling-wrapper is-vcentered">
                             {/* can remove this div */}
-                            <div className="columns is-full is-vcentered">
+                            <div className="columns is-full is-vcentered is-mobile">
                                 {props.data.photos && props.data.photos.length > 0 ?
                                     props.data.photos.map((singleImage, idx) => (
 
@@ -52,7 +52,7 @@ const ArtistCollection = (props) => {
                                         //     backgroundImage: `url("/photo/${singleImage._id}")` 
                                         //   }}>
 
-                                        <div key={idx} className="is-one-third column mr-3 image">
+                                        <div key={idx} className="is-one-third column mr-3 image p-0">
                                             <img src={`/photo/${singleImage._id}`} />
                                         </div>
                                     ))
