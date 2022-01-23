@@ -8,29 +8,30 @@ import ArtistCollection from "../components/ArtistCollection/artistCollection";
 const Dashboard = (props) => {
     // Get following users functions start
     const userToken = AuthService.getProfile();
-    // console.log(userToken,userToken.data._id)
+    console.log(userToken,userToken.data._id)
 
-    const {loadingFollowing, followingData} = useQuery(USER_PHOTOS, {
+    const {loading: loadingFollowing, data: dataFollowing} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
-    console.log(followingData)
+    console.log(dataFollowing)
 
-    // let following
-    // let followingCount
+    let following
+    let followingCount
     
-    // if(!loadingFollowing){
-    //     following = followingData.userPhotos.following
-    //     followingCount = followingData.userPhotos.followingCount
-    // }
-    // console.log(following, followingCount)
+    if(!loadingFollowing){
+        following = dataFollowing.userPhotos.following
+        followingCount = dataFollowing.userPhotos.followingCount
+    }
+    console.log(following, followingCount)
     // Get following users functions end
 
-    const {loading, data} = useQuery(USERS);
-    if(loading){
+    const {loading: loadingUsers, data: dataUsers} = useQuery(USERS);
+    console.log(dataUsers)
+    if(loadingUsers){
         return <p>Loading...</p>
     }
     else {
-        console.log(data)
+        console.log(dataUsers)
     }
 
     return (
@@ -106,7 +107,7 @@ const Dashboard = (props) => {
                     </div>
                 </div>
 
-                { data.users.map((singleCollection, idx) => (
+                { dataUsers.users.map((singleCollection, idx) => (
                     <ArtistCollection key={idx} data={singleCollection}/>
                 ))
                 }

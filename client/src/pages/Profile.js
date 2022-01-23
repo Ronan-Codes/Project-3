@@ -12,7 +12,7 @@ const Profile = (props) => {
     const {loading, data} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
-    // console.log(data)
+    console.log(data)
     let _id
     let photoArray
     let email
@@ -36,7 +36,7 @@ const Profile = (props) => {
         followingCount = data.userPhotos.followingCount
         followersCount = data.userPhotos.followersCount
     }
-    console.log(following, followingCount)
+    // console.log(following, followingCount)
 
     const [currentTab, setCurrentTab] = useState('');
     const [currentCollection, setCurrentCollection] = useState([]);
