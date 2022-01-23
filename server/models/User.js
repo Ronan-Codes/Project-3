@@ -22,7 +22,19 @@ const userSchema = new Schema({
         match: [/.+@.+\..+/]
     },
     profilePhoto: { type: Schema.Types.ObjectId, ref: 'Photo' },
-    photos: [{ type: Schema.Types.ObjectId, ref: 'Photo' }]
+    photos: [{ type: Schema.Types.ObjectId, ref: 'Photo' }],
+    following: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
+    followers: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 },
 {
     toJson: {
@@ -56,7 +68,17 @@ bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 
 userSchema.methods.isCorrectPassword = async function(password) {
     return bcrypt.compare(password, this.password);
-  };
+};
+
+// Virtuals are typically used for computed properties on documents.
+userSchema.virtual('followersCount').get(function() {
+    return this.followers.length;
+});
+
+userSchema.virtual('followingCount').get(function() {
+    return this.following.length;
+});
+// Virtuals end
 
 const User = model('User', userSchema);
 

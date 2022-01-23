@@ -18,6 +18,10 @@ const typeDefs = gql`
         email: String!
         profilePhoto: Photo
         photos: [Photo]
+        following: [User]
+        followers: [User]
+        followingCount: Int
+        followersCount: Int
     }
     type Auth {
         token: ID!
@@ -35,6 +39,8 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         updateUser(description: String): User
+        addFollowing(followingId: ID!): User
+        addFollower(followerId: ID!): User
     }
 
 `

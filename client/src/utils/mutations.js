@@ -40,3 +40,30 @@ export const UPDATE_USER = gql`
   }
 `;
 
+export const ADD_FOLLOWING = gql`
+    mutation addFollowing($id: ID!) {
+        addFollowing(followingId: $id) {
+            _id
+            username
+            followingCount
+            following {
+                _id
+                username
+            }
+        }
+    }
+`;
+
+export const ADD_FOLLOWER = gql`
+    mutation addFollower($id: ID!) {
+        addFollower(followerId: $id) {
+            _id
+            username
+            followersCount
+            followers {
+                _id
+                username
+            }
+        }
+    }
+`;

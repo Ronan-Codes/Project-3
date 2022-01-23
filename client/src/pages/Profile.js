@@ -12,13 +12,17 @@ const Profile = (props) => {
     const {loading, data} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
-    console.log(data)
+    // console.log(data)
     let _id
     let photoArray
     let email
     let username
     let profilePic
     let description
+    let following
+    let followers
+    let followingCount
+    let followersCount
     if(!loading){
         _id = data.userPhotos._id
         // console.log(data.userPhotos.photos)
@@ -27,7 +31,12 @@ const Profile = (props) => {
         username = data.userPhotos.username
         profilePic = data.userPhotos.profilePhoto
         description = data.userPhotos.description
+        following = data.userPhotos.following
+        followers = data.userPhotos.followers
+        followingCount = data.userPhotos.followingCount
+        followersCount = data.userPhotos.followersCount
     }
+    console.log(following, followingCount)
 
     const [currentTab, setCurrentTab] = useState('');
     const [currentCollection, setCurrentCollection] = useState([]);
@@ -114,10 +123,10 @@ const Profile = (props) => {
                                         </figure>
                                     </div> */}
 
-                                <div class="imageContainer">
+                                <div className="imageContainer">
                                     {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
                                     {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
-                                    <button class="addProfile is-size-2-widescreen is-size-3-desktop is-size-5-tablet is-size-7-mobile"><AddProfile><i class="fas fa-plus"></i></AddProfile></button>
+                                    <button className="addProfile is-size-2-widescreen is-size-3-desktop is-size-5-tablet is-size-7-mobile"><AddProfile><i className="fas fa-plus"></i></AddProfile></button>
                                     {/* <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a> */}
                                 </div>
 
@@ -146,7 +155,7 @@ const Profile = (props) => {
 
                                                 <h2>About Me</h2>
                                                 {/* <form onSubmit={handleFormSubmit}> */}
-                                                    <textarea class="textarea" maxLength="150" placeholder="e.g. Hello world" onChange={handleChange}></textarea>
+                                                    <textarea className="textarea" maxLength="150" placeholder="e.g. Hello world" onChange={handleChange}></textarea>
                                                 {/* </form> */}
                                                 
                                             </section>
@@ -253,7 +262,7 @@ const Profile = (props) => {
                                                 </figure>
                                             </div>
                                         </div> */}
-                                        <div class="imageContainer">
+                                        <div className="imageContainer">
                                             <a href="javascript:void(0);">
                                             <img className="portfolioImg" src={`/photo/${p._id}`} onClick={() => openPhotoModal(`${p._id}`)} alt="Portfolio photo" />
                                             </a>

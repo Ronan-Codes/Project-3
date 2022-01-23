@@ -1,7 +1,9 @@
 import React, { useState, useEffect} from "react";
 import { useParams } from 'react-router-dom';
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import {USER_PHOTOS} from '../utils/queries'
+
+import { ADD_FOLLOWING, ADD_FOLLOWER } from '../utils/mutations';
 
 const Photographer = (props) => {
     const { id } = useParams();
@@ -9,7 +11,7 @@ const Photographer = (props) => {
     const {loading, data} = useQuery(USER_PHOTOS, {
         variables: {userId: id}
     })
-    console.log(data)
+    // console.log(data)
     let _id
     let photoArray
     let email
@@ -38,6 +40,29 @@ const Photographer = (props) => {
         setPhotoModal(!currentModalStatus)
     }
 
+    // Following functions
+    const [addFollowing] = useMutation(ADD_FOLLOWING);
+    const [addFollower] = useMutation(ADD_FOLLOWER);
+
+    const handleFollowing = async() => {
+        try {
+          await addFollowing({
+            variables: { id: _id }
+          });
+        } catch (e) {
+          console.error(e);
+        }
+
+        try {
+            await addFollower({
+              variables: { id: _id }
+            });
+          } catch (e) {
+            console.error(e);
+          }
+    }
+
+
     return (
         <>
             {loading ? <div>Some Loading Icon etc</div> :
@@ -45,7 +70,7 @@ const Photographer = (props) => {
                     <header className="columns is-centered is-gapless is-mobile pl-2">
                         <div className="column is-one-fifth-tablet is-one-third-mobile mt-2">
                             <div className="">
-                                <div class="imageContainer">
+                                <div className="imageContainer">
                                 {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
 
@@ -83,7 +108,7 @@ const Photographer = (props) => {
                         <div className="column is-three-fifths-tablet is-full-mobile">
                             <div className="columns is-mobile customMargin">
                                 <div className="column is-two-fourths-mobile p-0 mr-1">
-                                    <button className="btnInProfile button is-size-7-mobile is-primary">Follow</button>
+                                    <button className="btnInProfile button is-size-7-mobile is-primary" onClick={handleFollowing}>Follow</button>
                                     {/* <button className="button is-size-7-mobile has-text-light"><AddImage/></button> */}
                                 </div>
                                 <div className="column is-two-fourths-mobile p-0 ml-1">
@@ -113,7 +138,7 @@ const Photographer = (props) => {
                                 photoArray.map((p, idx) => (
                                     <div key={idx} className="column is-one-third-tablet is-one-third-mobile imageWrapper p-1">
                                      
-                                        <div class="imageContainer">
+                                        <div className="imageContainer">
                                             {/* <a>
                                             <img className="portfolioImg" src={`/photo/${p._id}`} alt="" />
                                             </a> */}

@@ -23,6 +23,16 @@ query userPhotos($userId: ID!){
         photos{
             _id
         }
+        following {
+            _id
+            username
+        }
+        followers {
+            _id
+            username
+        }
+        followingCount
+        followersCount
     }
 }
 `
@@ -38,6 +48,16 @@ export const USERS = gql `
             photos{
                 _id
             }
+            following {
+                _id
+                username
+            }
+            followers {
+                _id
+                username
+            }
+            followingCount
+            followersCount
         }
     }
 `

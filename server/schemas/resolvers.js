@@ -18,11 +18,15 @@ const resolvers = {
             return User.findOne({_id:  userId})
                 .select('-__v')
                 .populate('photos')
+                .populate('following')
+                .populate('followers')
         },
         users: async () =>{
             return User.find()
                 .select('-__v -password')
                 .populate('photos')
+                .populate('following')
+                .populate('followers')
         }
     },
     Mutation: {
@@ -106,6 +110,34 @@ const resolvers = {
             }
       
             throw new AuthenticationError('Not logged in');
+        },
+        addFollowing: async (parent, { followingId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { following: followingId } },
+                    // $addToSet prevents duplicate entries, like in $push
+                    { new: true }
+                ).populate('following');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addFollower: async (parent, { followerId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: followerId },
+                    { $addToSet: { followers: context.user._id } },
+                    // $addToSet prevents duplicate entries, like in $push
+                    { new: true }
+                ).populate('followers');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
         }
     }
     }
