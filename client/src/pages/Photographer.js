@@ -1,14 +1,39 @@
 import React, { useState, useEffect} from "react";
+import AuthService from "../utils/auth"
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from "@apollo/client";
 import {USER_PHOTOS} from '../utils/queries'
 
-import { ADD_FOLLOWING, ADD_FOLLOWER } from '../utils/mutations';
+import { ADD_FOLLOWING, UNFOLLOW, ADD_FOLLOWER } from '../utils/mutations';
 
 const Photographer = (props) => {
+    // unfollow functions
+    const userToken = AuthService.getProfile();
+    // console.log(userToken)
+
+    const {loading: loadingFollowing, data: dataFollowing} = useQuery(USER_PHOTOS, {
+        variables: {userId: userToken.data._id}
+    })
+    // console.log(dataFollowing.userPhotos._id)
+    // const {} = dataFollowing
+    let userFollowing
+    if(!loadingFollowing){
+        userFollowing = dataFollowing.userPhotos.following
+        console.log(userFollowing)
+        // if (userFollowing.some(e => e._id === _id)) {
+        //     console.log("true")
+        //   }
+        //   else {console.log("false")}
+
+
+    }
+
+    // unfollow functions end
+    
+
     const { id } = useParams();
     // alert(id)
-    const {loading, data} = useQuery(USER_PHOTOS, {
+    const {loading: currentPhotographer, data: photographerData} = useQuery(USER_PHOTOS, {
         variables: {userId: id}
     })
     // console.log(data)
@@ -18,14 +43,14 @@ const Photographer = (props) => {
     let username
     let profilePic
     let description
-    if(!loading){
-        _id = data.userPhotos._id
+    if(!currentPhotographer){
+        _id = photographerData.userPhotos._id
         // console.log(data.userPhotos.photos)
-        photoArray = data.userPhotos.photos
-        email = data.userPhotos.email
-        username = data.userPhotos.username
-        profilePic = data.userPhotos.profilePhoto
-        description = data.userPhotos.description
+        photoArray = photographerData.userPhotos.photos
+        email = photographerData.userPhotos.email
+        username = photographerData.userPhotos.username
+        profilePic = photographerData.userPhotos.profilePhoto
+        description = photographerData.userPhotos.description
     }
 
     // photoModal functions
@@ -42,6 +67,7 @@ const Photographer = (props) => {
 
     // Following functions
     const [addFollowing] = useMutation(ADD_FOLLOWING);
+    const [unfollow] = useMutation(UNFOLLOW);
     const [addFollower] = useMutation(ADD_FOLLOWER);
 
     const handleFollowing = async() => {
@@ -62,10 +88,43 @@ const Photographer = (props) => {
           }
     }
 
+    // unfollow functions contd..
+    const handleUnfollow = async() => {
+        try {
+          await unfollow({
+            variables: { id: _id }
+          });
+        } catch (e) {
+          console.error(e);
+        }
+
+        // try {
+        //     await addFollower({
+        //       variables: { id: _id }
+        //     });
+        //   } catch (e) {
+        //     console.error(e);
+        //   }
+    }
+
+    // render Follow / Unfollow buttons
+    const followUnfollow = () => {
+        if (userFollowing.some(e => e._id === _id)) {
+            return(
+                <button className="btnInProfile button is-size-7-mobile is-primary" onClick={handleUnfollow}>Unfollow</button>
+            )
+          }
+          else {
+              return(
+                <button className="btnInProfile button is-size-7-mobile is-primary" onClick={handleFollowing}>Follow</button>
+              )
+          }
+    }
+    
 
     return (
         <>
-            {loading ? <div>Some Loading Icon etc</div> :
+            {currentPhotographer ? <div>Some Loading Icon etc</div> :
                 <>
                     <header className="columns is-centered is-gapless is-mobile pl-2">
                         <div className="column is-one-fifth-tablet is-one-third-mobile mt-2">
@@ -75,8 +134,6 @@ const Photographer = (props) => {
                                 </div>
 
                                 {/* <footer className="card-footer is-size-4">
-                                    <a href={`mailto:${email}`} className="card-footer-item"><i className="fas fa-envelope has-text-black"></i></a> */}
-
                                     {/* {userProfile.isFavorite
                                         // add like function here
                                         ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
@@ -108,8 +165,8 @@ const Photographer = (props) => {
                         <div className="column is-three-fifths-tablet is-full-mobile">
                             <div className="columns is-mobile customMargin">
                                 <div className="column is-two-fourths-mobile p-0 mr-1">
-                                    <button className="btnInProfile button is-size-7-mobile is-primary" onClick={handleFollowing}>Follow</button>
-                                    {/* <button className="button is-size-7-mobile has-text-light"><AddImage/></button> */}
+                                    {/* follow & unfollow function */}
+                                    {followUnfollow()}
                                 </div>
                                 <div className="column is-two-fourths-mobile p-0 ml-1">
                                     {/* <button className="button is-size-7-mobile is-primary modal-button is-hidden-tablet" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}

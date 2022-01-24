@@ -39,7 +39,9 @@ function Nav() {
     <nav className="navbar mainNav" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <div className="navbar-item">
+                  <a href="/dashboard">
                     <h1 className="title appName has-text-light">Pic'd Up</h1>
+                  </a>
                 </div>
 
                 <a role="button" className="navbar-burger " aria-label="menu" aria-expanded="false"

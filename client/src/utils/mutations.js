@@ -54,6 +54,20 @@ export const ADD_FOLLOWING = gql`
     }
 `;
 
+export const UNFOLLOW = gql`
+    mutation unfollow($id: ID!) {
+        unfollow(followingId: $id) {
+            _id
+            username
+            followingCount
+            following {
+                _id
+                username
+            }
+        }
+    }
+`;
+
 export const ADD_FOLLOWER = gql`
     mutation addFollower($id: ID!) {
         addFollower(followerId: $id) {

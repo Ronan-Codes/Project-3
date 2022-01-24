@@ -117,7 +117,21 @@ const resolvers = {
                     { _id: context.user._id },
                     { $addToSet: { following: followingId } },
                     // $addToSet prevents duplicate entries, like in $push
+                    { new: true, runValidators: true }
+                ).populate('following');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        unfollow: async (parent, { followingId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { following: followingId } },
                     { new: true }
+                    // runValidators unnecessary since deleting
                 ).populate('following');
 
                 return updatedUser;
@@ -131,7 +145,7 @@ const resolvers = {
                     { _id: followerId },
                     { $addToSet: { followers: context.user._id } },
                     // $addToSet prevents duplicate entries, like in $push
-                    { new: true }
+                    { new: true, runValidators: true }
                 ).populate('followers');
 
                 return updatedUser;

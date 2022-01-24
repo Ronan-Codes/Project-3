@@ -40,6 +40,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         updateUser(description: String): User
         addFollowing(followingId: ID!): User
+        unfollow(followingId: ID!): User
         addFollower(followerId: ID!): User
     }
 

@@ -190,7 +190,7 @@ const Profile = (props) => {
                                 <div className="column is-full  ml-1 mt-2 mr-2">
                                     <div className="aboutMeWrapper  ">
                                         <h2 className="is-size-3 is-size-5-mobile">{username}</h2>
-                                        <p className="is-size-5 is-size-7-mobile"><a href={`mailto:${email}`}><i className="fas fa-envelope has-text-black"></i>: {`${email}`}</a></p>
+                                        <p className="is-size-5 is-size-7-mobile"><a href={`mailto:${email}`}><i className="fas fa-envelope has-text-black"></i> {`${email}`}</a></p>
                                         <span className="is-size-5 is-size-7-mobile long-word-break">{description? description : "Tell us about yourself!"}</span>
                                         
                                     </div>
