@@ -51,7 +51,7 @@ body {
     background: url('../icons/contact.svg');
 }
 
-button {
+button, .browseBg {
     /* width: 60%; */
     background: rgb(104, 182, 182);
     background: linear-gradient(90deg, rgba(104, 182, 182, 1) 0%, rgba(11, 79, 108, 1) 39%, rgba(76, 30, 79, 1) 71%);
@@ -218,7 +218,12 @@ button {
 } */
 
 /* Dashboard Styles */
-/*  */
+.browseSortBg {
+    background: rgb(76, 30, 79);
+    background: linear-gradient(90deg, rgba(76, 30, 79, 1) 13%, rgba(11, 79, 108, 1) 60%, rgba(104, 182, 182, 1) 100%);
+    font-family: 'Allerta Stencil', sans-serif;
+}
+/* Dashboard End */
 
 
 @media screen and (min-width: 769px) {

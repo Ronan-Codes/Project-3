@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AuthService from "../utils/auth"
 import { useQuery } from "@apollo/client";
 import {USERS} from '../utils/queries';
@@ -6,6 +6,8 @@ import { USER_PHOTOS } from "../utils/queries";
 import ArtistCollection from "../components/ArtistCollection/artistCollection";
 
 const Dashboard = (props) => {
+    const [currentSort, setSort] = useState("all");
+
     // Get following users functions start
     const userToken = AuthService.getProfile();
     console.log(userToken,userToken.data._id)
@@ -33,6 +35,14 @@ const Dashboard = (props) => {
     else {
         console.log(dataUsers)
     }
+
+    // var handleChange = e => {
+    //     const { name, value } = e.target;
+    
+    //     this.setState({
+    //       [name]: value
+    //     });
+    //   };
 
     return (
         <>  
@@ -69,8 +79,8 @@ const Dashboard = (props) => {
             <div className="columns is-centered is-gapless mt-4 is-multiline mx-2">
             <div className="column is-four-fifths">
                     <div className="card mb-4">
-                        <header className="card-header">
-                            <p className="card-header-title is-centered">
+                        <header className="card-header browseSortBg">
+                            <p className="card-header-title is-centered has-text-light">
                             Browse
                             </p>
                             {/* <button className="card-header-icon" aria-label="more options">
@@ -91,10 +101,10 @@ const Dashboard = (props) => {
                                 </div> */}
                                 <div class="control has-text-centered">
                                     <label className="radio">
-                                        <input type="radio" name="foobar"/> Following
+                                        <input type="radio" value="all" name="photographersSort" checked={currentSort === 'all'} onClick={() => setSort('all')}/> All
                                     </label>
                                     <label className="radio">
-                                        <input type="radio" name="foobar" checked/> Genre
+                                        <input type="radio" value="following" name="photographersSort" checked={currentSort === 'following'} onClick={() => setSort('following')}/> Following
                                     </label>
                                 </div>
                             </div>
@@ -106,11 +116,19 @@ const Dashboard = (props) => {
                         </footer> */}
                     </div>
                 </div>
-
-                { dataUsers.users.map((singleCollection, idx) => (
+                
+                {currentSort === "following" ? 
+                    following.map((singleCollection, idx) => (
+                        <ArtistCollection key={idx} data={singleCollection}/>
+                    )) : 
+                    dataUsers.users.map((singleCollection, idx) => (
+                        <ArtistCollection key={idx} data={singleCollection}/>
+                    ))}
+                {/* { dataUsers.users.map((singleCollection, idx) => (
                     <ArtistCollection key={idx} data={singleCollection}/>
                 ))
-                }
+                } */}
+            
             </div>
         </>
     )
