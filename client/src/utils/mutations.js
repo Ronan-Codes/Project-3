@@ -81,3 +81,17 @@ export const ADD_FOLLOWER = gql`
         }
     }
 `;
+
+export const REMOVE_FOLLOWER = gql`
+    mutation removeFollower($id: ID!) {
+        removeFollower(followerId: $id) {
+            _id
+            username
+            followersCount
+            followers {
+                _id
+                username
+            }
+        }
+    }
+`;

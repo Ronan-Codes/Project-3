@@ -42,6 +42,7 @@ const typeDefs = gql`
         addFollowing(followingId: ID!): User
         unfollow(followingId: ID!): User
         addFollower(followerId: ID!): User
+        removeFollower(followerId: ID!): User
     }
 
 `

@@ -152,6 +152,19 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You need to be logged in!');
+        },
+        removeFollower: async (parent, { followerId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: followerId },
+                    { $pull: { followers: context.user._id } },
+                    { new: true }
+                ).populate('followers');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
         }
     }
     }

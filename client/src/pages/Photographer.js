@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from "@apollo/client";
 import {USER_PHOTOS} from '../utils/queries'
 
-import { ADD_FOLLOWING, UNFOLLOW, ADD_FOLLOWER } from '../utils/mutations';
+import { ADD_FOLLOWING, UNFOLLOW, ADD_FOLLOWER, REMOVE_FOLLOWER } from '../utils/mutations';
 
 const Photographer = (props) => {
     // unfollow functions
@@ -69,6 +69,7 @@ const Photographer = (props) => {
     const [addFollowing] = useMutation(ADD_FOLLOWING);
     const [unfollow] = useMutation(UNFOLLOW);
     const [addFollower] = useMutation(ADD_FOLLOWER);
+    const [removeFollower] = useMutation(REMOVE_FOLLOWER);
 
     const handleFollowing = async() => {
         try {
@@ -98,13 +99,13 @@ const Photographer = (props) => {
           console.error(e);
         }
 
-        // try {
-        //     await addFollower({
-        //       variables: { id: _id }
-        //     });
-        //   } catch (e) {
-        //     console.error(e);
-        //   }
+        try {
+            await removeFollower({
+              variables: { id: _id }
+            });
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     // render Follow / Unfollow buttons
