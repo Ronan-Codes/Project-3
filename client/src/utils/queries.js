@@ -33,6 +33,7 @@ query userPhotos($userId: ID!){
         }
         followingCount
         followersCount
+        genres
     }
 }
 `
@@ -58,6 +59,16 @@ export const USERS = gql `
             }
             followingCount
             followersCount
+            genres
         }
     }
 `
+
+export const QUERY_GENRES = gql`
+  {
+    genres {
+      _id
+      name
+    }
+  }
+`;

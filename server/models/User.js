@@ -2,6 +2,8 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
+const Genre = require('./Genre');
+
 const userSchema = new Schema({
     username: { 
         type: String, 
@@ -34,7 +36,12 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'User'
         }
-    ]
+    ],
+    genres: {
+        type: Schema.Types.ObjectId,
+        ref: 'Genre',
+        // required: false
+      }
 },
 {
     toJson: {

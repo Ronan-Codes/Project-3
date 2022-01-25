@@ -95,3 +95,14 @@ export const REMOVE_FOLLOWER = gql`
         }
     }
 `;
+
+export const ADD_GENRE = gql`
+  mutation addGenre($genreId: ID!) {
+    addGenre(genreId: $genreId) {
+      genres {
+        _id
+        name
+      }
+    }
+  }
+`;

@@ -10,6 +10,12 @@ const typeDefs = gql`
         encoding: String!
         #postedAt: String
     }
+
+    type Genre {
+        _id: ID
+        name: String!
+    }
+
     type User {
         _id: ID
         username: String!
@@ -22,6 +28,7 @@ const typeDefs = gql`
         followers: [User]
         followingCount: Int
         followersCount: Int
+        genres: [Genre]
     }
     type Auth {
         token: ID!
@@ -32,6 +39,7 @@ const typeDefs = gql`
        photos: [Photo]
        userPhotos(userId: ID): User
        users: [User]
+       genres: [Genre]
     }
     type Mutation {
         addPhoto(photo: Upload!, userId: String): Boolean
@@ -43,6 +51,7 @@ const typeDefs = gql`
         unfollow(followingId: ID!): User
         addFollower(followerId: ID!): User
         removeFollower(followerId: ID!): User
+        addGenre(genreId: ID!): User
     }
 
 `

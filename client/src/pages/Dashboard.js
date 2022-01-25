@@ -6,6 +6,12 @@ import { USER_PHOTOS } from "../utils/queries";
 import ArtistCollection from "../components/ArtistCollection/artistCollection";
 
 const Dashboard = (props) => {
+    const [dropDown, toggleDropdown] = useState(false);
+    var genreDropDown = dropDown ? "is-active" : "";
+    const activateDropdown = () => {
+        toggleDropdown(!dropDown)
+    }
+
     const [currentSort, setSort] = useState("all");
 
     // Get following users functions start
@@ -35,14 +41,6 @@ const Dashboard = (props) => {
     else {
         console.log(dataUsers)
     }
-
-    // var handleChange = e => {
-    //     const { name, value } = e.target;
-    
-    //     this.setState({
-    //       [name]: value
-    //     });
-    //   };
 
     return (
         <>  
@@ -99,12 +97,86 @@ const Dashboard = (props) => {
                                         </select>
                                     </div>
                                 </div> */}
-                                <div class="control has-text-centered">
+                                <div className="control has-text-centered">
                                     <label className="radio">
                                         <input type="radio" value="all" name="photographersSort" checked={currentSort === 'all'} onClick={() => setSort('all')}/> All
                                     </label>
                                     <label className="radio">
                                         <input type="radio" value="following" name="photographersSort" checked={currentSort === 'following'} onClick={() => setSort('following')}/> Following
+                                    </label>
+
+                                    <label className="radio">
+                                        <input type="radio" value="genre" name="photographersSort" checked={currentSort === 'genre'} onClick={() => setSort('genre')}/>&nbsp;
+                                        {/* <div className="dropdown">
+                                            <div className="dropdown-trigger">
+                                                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                                                <span>Click me</span>
+                                                <span className="icon is-small">
+                                                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                                </span>
+                                                </button>
+                                            </div>
+                                            <div className="dropdown-menu" id="dropdown-menu3" role="menu">
+                                                <div className="dropdown-content">
+                                                <a href="#" className="dropdown-item">
+                                                    Overview
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Modifiers
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Grid
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Form
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Elements
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Components
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Layout
+                                                </a>
+                                                <hr className="dropdown-divider"/>
+                                                <a href="#" className="dropdown-item">
+                                                    More
+                                                </a>
+                                                </div>
+                                            </div>
+                                        </div> */}
+
+                                        <div className={`dropdown ${genreDropDown}`} onClick={activateDropdown}>
+                                            <div className="dropdown-trigger">
+                                                <a className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                                <span>Genre</span>
+                                                <span className="icon is-small">
+                                                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                                </span>
+                                                </a>
+                                            </div>
+                                            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                                <div className="dropdown-content">
+                                                <a href="#" className="dropdown-item">
+                                                    Portrait
+                                                </a>
+                                                <a className="dropdown-item">
+                                                    Wedding
+                                                </a>
+                                                <a href="#" className="dropdown-item is-active">
+                                                    Street
+                                                </a>
+                                                <a href="#" className="dropdown-item">
+                                                    Nature
+                                                </a>
+                                                <hr className="dropdown-divider"/>
+                                                <a href="#" className="dropdown-item">
+                                                    Other
+                                                </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </label>
                                 </div>
                             </div>

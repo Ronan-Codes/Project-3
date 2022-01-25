@@ -1,4 +1,4 @@
-const { Photo, User } = require('../models')
+const { Photo, User, Genre } = require('../models')
 const { createWriteStream } = require('fs');
 const path = require('path');
 const { AuthenticationError } = require('apollo-server-express');
@@ -27,7 +27,10 @@ const resolvers = {
                 .populate('photos')
                 .populate('following')
                 .populate('followers')
-        }
+        },
+        genres: async () => {
+            return await Genre.find();
+        },
     },
     Mutation: {
         addPhoto: async (_, { photo, userId }) => {
@@ -160,6 +163,19 @@ const resolvers = {
                     { $pull: { followers: context.user._id } },
                     { new: true }
                 ).populate('followers');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addGenre: async (parent, { genreId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { genres: genreId } },
+                    { new: true, runValidators: true }
+                ).populate('genres');
 
                 return updatedUser;
             }
