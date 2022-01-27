@@ -155,10 +155,6 @@ button, .browseBg {
     cursor: pointer;
     border-radius: 50%;
   }
-
-.squareBorder{
-    border-radius: 0;
-}
 /* Portfolio Styles End */
 
 /* Login Form Styles Start */
@@ -247,5 +243,10 @@ button, .browseBg {
 
     .profilePicCustomPadding {
         padding: .1rem;
+    }
+
+    .editModalMobile{
+        padding-left: .90rem;
+        padding-right: .90rem
     }
 }

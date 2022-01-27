@@ -201,7 +201,7 @@ const Profile = (props) => {
                                 {/* <span className="is-size-7 is-hidden-tablet">{description? description : "Tell us about yourself!"}</span> */}
                                     <div className={`modal ${modalStatus}`}>
                                         <div className="modal-background" onClick={toggleEditModal}></div>
-                                        <div className="modal-card">
+                                        <div className="modal-card editModalMobile">
                                             <header className="modal-card-head p-2">
                                                 <p className="modal-card-title is-size-5 has-text-weight-semibold">Edit Profile</p>
                                                 {/* <button className="delete" aria-label="close" onClick={toggleEditModal}></button> */}
@@ -236,9 +236,6 @@ const Profile = (props) => {
                                                 </form>
                                             </section>
 
-                                            {/* <header className="modal-card-head p-2 squareBorder">
-                                                <p className="modal-card-title is-size-6">About Me</p>
-                                            </header> */}
                                             <section className="modal-card-body px-4 pt-0 pb-4">
                                                 <hr className="p-0 mt-2 mb-2"/>
                                                 {/* <h2 className="has-text-weight-bold">About Me</h2> */}
@@ -371,48 +368,6 @@ const Profile = (props) => {
                                 <button className="modal-close is-large" onClick={closePhotoModal} aria-label="close"></button>
                         </div>
                     </main>
-
-                    {/* modal for addGenre */}
-                    {/* <div className={`modal ${modalStatus}`}>
-                        <div className="modal-background" onClick={toggleEditModal}></div>
-                        <div className="modal-card">
-                            <header className="modal-card-head">
-                            <p className="modal-card-title">Specialties</p>
-                            <button className="delete" aria-label="close" onClick={toggleEditModal}></button>
-                            </header>
-                            <section className="modal-card-body">
-                                <h2>Add Genre</h2>
-                                <form className="">
-                                        {genres && genres.length > 0 ?
-                                            genres.map((singleGenre, idx) => 
-                                                {
-                                                    if(genreArray.includes(singleGenre.name)) {
-                                                        return (
-                                                            <div className="is-inline-block" key={idx}>
-                                                                <label className="checkbox mr-3">
-                                                                    <input defaultChecked={true} type="checkbox" id="" name={singleGenre.name} value={singleGenre.name} onClick={() => handleRemoveGenre(`${singleGenre._id}`)}/> {singleGenre.name}
-                                                                </label>
-                                                            </div>
-                                                        )
-                                                    } else {
-                                                        return (
-                                                            <div className="is-inline-block" key={idx}>
-                                                                <label className="checkbox mr-3">
-                                                                    <input type="checkbox" id="" name={singleGenre.name} value={singleGenre.name} onClick={() => handleAddGenre(`${singleGenre._id}`)}/> {singleGenre.name}
-                                                                </label>
-                                                            </div>
-                                                        )
-                                                    }
-                                                }
-                                            ): ""
-                                        }
-                                </form>
-                            </section>
-                            <footer className="modal-card-foot">
-                            
-                            </footer>
-                        </div>
-                    </div> */}
                 </>
             }
         </>
