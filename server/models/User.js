@@ -37,11 +37,13 @@ const userSchema = new Schema({
             ref: 'User'
         }
     ],
-    genres: {
-        type: Schema.Types.ObjectId,
-        ref: 'Genre',
-        // required: false
-      }
+    genres: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Genre',
+            // required: false
+        }
+    ]
 },
 {
     toJson: {

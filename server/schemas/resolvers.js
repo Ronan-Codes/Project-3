@@ -20,6 +20,7 @@ const resolvers = {
                 .populate('photos')
                 .populate('following')
                 .populate('followers')
+                .populate('genres')
         },
         users: async () =>{
             return User.find()
@@ -27,6 +28,7 @@ const resolvers = {
                 .populate('photos')
                 .populate('following')
                 .populate('followers')
+                .populate('genres')
         },
         genres: async () => {
             return await Genre.find();
@@ -181,8 +183,21 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You need to be logged in!');
+        },
+        removeGenre: async (parent, { genreId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { genres: genreId } },
+                    { new: true }
+                ).populate('genres');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
         }
     }
-    }
+}
 
 module.exports = resolvers

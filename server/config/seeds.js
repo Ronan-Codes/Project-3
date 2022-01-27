@@ -12,6 +12,11 @@ db.once('open', async () => {
         { name: 'Nature' },
         { name: 'Events' },
         { name: 'Journalism' },
+        { name: 'Sports' },
+        { name: 'Action' },
+        { name: 'Lifestyle' },
+        { name: 'Food' },
+        { name: 'Animals' }
     ]);
 
     console.log('categories seeded');

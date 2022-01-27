@@ -1,18 +1,21 @@
 import React, { useState, useEffect} from "react";
 import AuthService from '../utils/auth'
 import { useQuery, useMutation } from "@apollo/client";
-import { UPDATE_USER } from '../utils/mutations';
-import {USER_PHOTOS} from '../utils/queries'
+import { UPDATE_USER, ADD_GENRE, REMOVE_GENRE } from '../utils/mutations';
+import {USER_PHOTOS, QUERY_GENRES} from '../utils/queries'
 import AddImage from "../components/AddImage";
 import AddProfile from "../components/AddProfile";
 
 const Profile = (props) => {
     const userToken = AuthService.getProfile();
-    // console.log(userToken.data._id)
-    const {loading, data} = useQuery(USER_PHOTOS, {
+
+    // useEffect(()=> {
+    //     console.log("HELLO")
+    // }, [ genreString ]);
+
+    const {loading, data, refetch: refetchUser} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
-    console.log(data)
     let _id
     let photoArray
     let email
@@ -23,9 +26,12 @@ const Profile = (props) => {
     let followers
     let followingCount
     let followersCount
+    let userGenres
+
+    let genreArray = []
+    let genreString = ""
     if(!loading){
         _id = data.userPhotos._id
-        // console.log(data.userPhotos.photos)
         photoArray = data.userPhotos.photos
         email = data.userPhotos.email
         username = data.userPhotos.username
@@ -35,8 +41,14 @@ const Profile = (props) => {
         followers = data.userPhotos.followers
         followingCount = data.userPhotos.followingCount
         followersCount = data.userPhotos.followersCount
+        userGenres = data.userPhotos.genres
+        for (var i = 0; i < userGenres.length; i++) {
+            genreArray.push(userGenres[i].name)
+        }
+
+        genreString = genreArray.join(" | ")
     }
-    // console.log(following, followingCount)
+    console.log(genreArray)
 
     const [currentTab, setCurrentTab] = useState('');
     const [currentCollection, setCurrentCollection] = useState([]);
@@ -63,7 +75,9 @@ const Profile = (props) => {
     }
 
     // editModal Functions
-    const [updateUser] = useMutation(UPDATE_USER);
+    const [updateUser, {error: errorUpdateUser}] = useMutation(UPDATE_USER,{
+        onCompleted: refetchUser,
+    });
     const [editModalStatus, setEditModal] = useState(false);
     var modalStatus = editModalStatus ? "is-active" : "";
     var toggleEditModal = () => {
@@ -82,6 +96,7 @@ const Profile = (props) => {
         toggleEditModal();
 
         console.log(mutationResponse)
+        // window.location.reload()
     };
 
     const handleChange = (event) => {
@@ -91,10 +106,6 @@ const Profile = (props) => {
         });
     };
     // editModal Function End
-    
-    useEffect(()=> {
-        // fetchData();
-    }, [data]);
 
     // photoModal functions
     const [currentModalImage, setModalImage] = useState("");
@@ -107,7 +118,62 @@ const Profile = (props) => {
     const closePhotoModal = () => {
         setPhotoModal(!currentModalStatus)
     }
-    
+
+    // ADD/REMOVE Genre functions
+    const { loading: loadingGenres, data: genresData } = useQuery(QUERY_GENRES);
+    let genres
+    if(!loadingGenres){
+        genres = genresData.genres
+    }
+
+    // { data, loading, error, reset } can utilize these
+    const [addGenre, {error: addGenreError, reset}] = useMutation(ADD_GENRE,{
+        onCompleted: refetchUser,
+    });
+    const [removeGenre,{error: removeGenreError}] = useMutation(REMOVE_GENRE,{
+        onCompleted: refetchUser,
+    });
+
+    const handleAddGenre = async (genreId) => {
+        const mutationResponse = await addGenre({
+            variables: {
+                genreId: genreId
+            }
+        })
+        console.log(mutationResponse)
+        // refetch()
+    }
+
+    const handleRemoveGenre = async (genreId) => {
+        const mutationResponse = await removeGenre({
+            variables: {
+                genreId: genreId
+            }
+        })
+        console.log(mutationResponse)
+    }
+
+    // const [checkedState, setCheckedState] = useState(
+    //     new Array(genres.length).fill(false)
+    // );
+
+    // const handleFormSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const mutationResponse = await updateUser({
+    //       variables: {
+    //         description: formState.description,
+    //       },
+    //     });
+       
+    //     toggleEditModal();
+
+    //     console.log(mutationResponse)
+    // };
+
+    // useEffect(()=> {
+    //     console.log("HELLO")
+    // }, [ genreString ]);
+
     return (
         <>
             {loading ? <div>Some Loading Icon etc</div> :
@@ -130,39 +196,61 @@ const Profile = (props) => {
                                     {/* <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a> */}
                                 </div>
 
-                                <div className="has-text-centered">
+                                <div className="has-text-centered is-centered">
                                 {/* <h2 className="is-size-5 is-hidden-tablet">{username}</h2> */}
                                 {/* <span className="is-size-7 is-hidden-tablet">{description? description : "Tell us about yourself!"}</span> */}
-
-                                {/* <button className="button is-small is-primary modal-button is-hidden-mobile" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
-                                {/* <button className="button is-small has-text-light is-hidden-tablet is-size-7-mobile"><AddImage/></button> */}
-
                                     <div className={`modal ${modalStatus}`}>
                                         <div className="modal-background" onClick={toggleEditModal}></div>
                                         <div className="modal-card">
-                                            <header className="modal-card-head">
-                                            <p className="modal-card-title">Edit Profile</p>
-                                            <button className="delete" aria-label="close" onClick={toggleEditModal}></button>
+                                            <header className="modal-card-head p-2">
+                                                <p className="modal-card-title is-size-5 has-text-weight-semibold">Edit Profile</p>
+                                                {/* <button className="delete" aria-label="close" onClick={toggleEditModal}></button> */}
                                             </header>
-                                            {/* <section className="modal-card-body p-0">
-                                                <h2>Edit Profile Picture </h2>
-                                                <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a>
 
-                                            </section> */}
-                                            <section className="modal-card-body">
-                                                {/* <h2>Edit Profile Picture </h2>
-                                                <button className="button is-small has-text-light is-size-7-mobile"><AddImage/></button> */}
-
-                                                <h2>About Me</h2>
-                                                {/* <form onSubmit={handleFormSubmit}> */}
-                                                    <textarea className="textarea" maxLength="150" placeholder="e.g. Hello world" onChange={handleChange}></textarea>
-                                                {/* </form> */}
-                                                
+                                            <section className="modal-card-body p-0">
+                                                <h2 className="pt-2 pb-1 has-text-weight-semibold">Add Specialty</h2>
+                                                <form className="">
+                                                        {genres && genres.length > 0 ?
+                                                            genres.map((singleGenre, idx) => 
+                                                                {
+                                                                    if(genreArray.includes(singleGenre.name)) {
+                                                                        return (
+                                                                            <div className="is-inline-block" key={idx}>
+                                                                                <label className="checkbox mr-3">
+                                                                                    <input defaultChecked={true} type="checkbox" id="" name={singleGenre.name} value={singleGenre.name} onClick={() => handleRemoveGenre(`${singleGenre._id}`)}/> {singleGenre.name}
+                                                                                </label>
+                                                                            </div>
+                                                                        )
+                                                                    } else {
+                                                                        return (
+                                                                            <div className="is-inline-block" key={idx}>
+                                                                                <label className="checkbox mr-3">
+                                                                                    <input type="checkbox" id="" name={singleGenre.name} value={singleGenre.name} onClick={() => handleAddGenre(`${singleGenre._id}`)}/> {singleGenre.name}
+                                                                                </label>
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                }
+                                                            ): ""
+                                                        }
+                                                </form>
                                             </section>
-                                            <footer className="modal-card-foot">
-                                                {/* add mutation to save Changes and toggle editmodal */}
-                                            <button className="button is-success" onClick={handleFormSubmit}>Save changes</button>
-                                            <button className="button is-success" onClick={toggleEditModal}>Cancel</button>
+
+                                            {/* <header className="modal-card-head p-2 squareBorder">
+                                                <p className="modal-card-title is-size-6">About Me</p>
+                                            </header> */}
+                                            <section className="modal-card-body px-4 pt-0 pb-4">
+                                                <hr className="p-0 mt-2 mb-2"/>
+                                                {/* <h2 className="has-text-weight-bold">About Me</h2> */}
+                                                <h2 className="has-text-weight-semibold">About Me</h2>
+                                                <textarea className="textarea" maxLength="150" placeholder={description} onChange={handleChange}></textarea>
+                                            </section>
+                                            
+                                            <footer className="modal-card-foot p-2">
+                                                <div className="m-auto">
+                                                <button className="button is-small is-success" onClick={handleFormSubmit}>Save</button>
+                                                <button className="button is-small is-success" onClick={toggleEditModal}>Exit</button>
+                                                </div>
                                             </footer>
                                         </div>
                                     </div>
@@ -190,7 +278,8 @@ const Profile = (props) => {
                                 <div className="column is-full  ml-1 mt-2 mr-2">
                                     <div className="aboutMeWrapper  ">
                                         <h2 className="is-size-3 is-size-5-mobile">{username}</h2>
-                                        <p className="is-size-5 is-size-7-mobile"><a href={`mailto:${email}`}><i className="fas fa-envelope has-text-black"></i> {`${email}`}</a></p>
+                                        <p className="is-size-5 is-size-7-mobile"><i class="fas fa-camera-retro has-text-black"></i> {genreString}</p>
+                                        <p className="is-size-5 is-size-7-mobile"><a href={`mailto:${email}`}><i className="fas fa-envelope has-text-black"></i> {email}</a></p>
                                         <span className="is-size-5 is-size-7-mobile long-word-break">{description? description : "Tell us about yourself!"}</span>
                                         
                                     </div>
@@ -283,10 +372,47 @@ const Profile = (props) => {
                         </div>
                     </main>
 
-                    {/* <main class="columns is-centered">
-                        <div class="column columns is-four-fifths is-multiline"> */}
-
-
+                    {/* modal for addGenre */}
+                    {/* <div className={`modal ${modalStatus}`}>
+                        <div className="modal-background" onClick={toggleEditModal}></div>
+                        <div className="modal-card">
+                            <header className="modal-card-head">
+                            <p className="modal-card-title">Specialties</p>
+                            <button className="delete" aria-label="close" onClick={toggleEditModal}></button>
+                            </header>
+                            <section className="modal-card-body">
+                                <h2>Add Genre</h2>
+                                <form className="">
+                                        {genres && genres.length > 0 ?
+                                            genres.map((singleGenre, idx) => 
+                                                {
+                                                    if(genreArray.includes(singleGenre.name)) {
+                                                        return (
+                                                            <div className="is-inline-block" key={idx}>
+                                                                <label className="checkbox mr-3">
+                                                                    <input defaultChecked={true} type="checkbox" id="" name={singleGenre.name} value={singleGenre.name} onClick={() => handleRemoveGenre(`${singleGenre._id}`)}/> {singleGenre.name}
+                                                                </label>
+                                                            </div>
+                                                        )
+                                                    } else {
+                                                        return (
+                                                            <div className="is-inline-block" key={idx}>
+                                                                <label className="checkbox mr-3">
+                                                                    <input type="checkbox" id="" name={singleGenre.name} value={singleGenre.name} onClick={() => handleAddGenre(`${singleGenre._id}`)}/> {singleGenre.name}
+                                                                </label>
+                                                            </div>
+                                                        )
+                                                    }
+                                                }
+                                            ): ""
+                                        }
+                                </form>
+                            </section>
+                            <footer className="modal-card-foot">
+                            
+                            </footer>
+                        </div>
+                    </div> */}
                 </>
             }
         </>

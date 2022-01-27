@@ -52,6 +52,7 @@ const typeDefs = gql`
         addFollower(followerId: ID!): User
         removeFollower(followerId: ID!): User
         addGenre(genreId: ID!): User
+        removeGenre(genreId: ID!): User
     }
 
 `

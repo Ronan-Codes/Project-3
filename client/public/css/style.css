@@ -155,6 +155,10 @@ button, .browseBg {
     cursor: pointer;
     border-radius: 50%;
   }
+
+.squareBorder{
+    border-radius: 0;
+}
 /* Portfolio Styles End */
 
 /* Login Form Styles Start */
