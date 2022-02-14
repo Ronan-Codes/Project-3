@@ -1,0 +1,22 @@
+.dashWrapper {
+    width: 50%;
+}
+
+.dashContainer {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+}
+.dashImg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboardGenreFont {
+        font-size: .6em;
+    }
+}

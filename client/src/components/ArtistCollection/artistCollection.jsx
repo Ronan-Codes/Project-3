@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style.css"
 
 const ArtistCollection = (props) => {
     let genreArr = []
@@ -36,7 +37,9 @@ const ArtistCollection = (props) => {
                                 </a>   
                             </Link>
                         </div>
-                        <div className="column is-three-quarters scrolling-wrapper is-vcentered">
+
+                        {/* Older version of the next div. Saved in case the new one breaks. */}
+                        {/* <div className="column is-three-quarters scrolling-wrapper is-vcentered">
                             <div className="columns is-full is-vcentered is-mobile">
                                 {props.data.photos && props.data.photos.length > 0 ?
                                     props.data.photos.map((singleImage, idx) => (
@@ -47,7 +50,25 @@ const ArtistCollection = (props) => {
                                     ))
                                 : ''}
                             </div>
+                        </div> */}
+
+                        <div className="column is-three-quarters scrolling-wrapper is-vcentered">
+                            <div className="columns column is-full is-vcentered is-mobile">
+                                {props.data.photos && props.data.photos.length > 0 ?
+                                    props.data.photos.map((singleImage, idx) => (
+                                        <div key={idx} className="column is-one-third-tablet is-one-third-mobile dashWrapper p-1">
+                                            <div className="dashContainer">
+                                                <a href="javascript:void(0);">
+                                                <img className="dashImg" src={`/photo/${singleImage._id}`} alt="Portfolio photo" />
+                                                {/* onClick={() => openPhotoModal(`${p._id}`)} */}
+                                                </a>
+                                             </div>
+                                        </div>                                        
+                                    ))
+                                : ''}
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>
