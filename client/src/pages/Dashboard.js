@@ -92,12 +92,12 @@ const Dashboard = (props) => {
             <div className="column is-four-fifths">
                     <div className="card mb-4">
                         <header className="card-header browseSortBg">
-                            <p className="card-header-title is-centered has-text-light">
+                            <p className="card-header-title is-centered has-text-light py-1">
                             Browse
                             </p>
 
                         </header>
-                        <div className="card-content">
+                        <div className="card-content py-2">
                             <div className="content">
                          
                                 <div className="control has-text-centered">
@@ -111,7 +111,7 @@ const Dashboard = (props) => {
                                     <label className="radio">
                                         <input type="radio" value="genre" name="photographersSort" checked={currentSort === 'genre'} onClick={() => setSort('genre')}/>&nbsp;
 
-                                                <select className="dropdown-content" value={currentGenre} onChange={e => sortGenre(e.currentTarget.value)}>
+                                                <select className="dropdown-content py-1" value={currentGenre} onChange={e => sortGenre(e.currentTarget.value)}>
                                                     <option href="#" className="" value="genre">
                                                         Genre
                                                     </option>

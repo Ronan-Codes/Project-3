@@ -10,10 +10,8 @@ function AddProfile(props){
         onCompleted: props.reloadFunc
     })
     const userInfo = AuthService.getProfile();
-    // console.log(userInfo.data._id)
     const onDrop = useCallback(
         ([photo]) => {
-            // console.log(photo)
             addPhoto({variables: {photo, userId: userInfo.data._id}})
         },
         [addPhoto]
@@ -23,17 +21,11 @@ function AddProfile(props){
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {isDragActive ? (
-                // <i className="far fa-id-badge has-text-black"></i>
                 <i class="fas fa-plus"></i>
             ) : (
-                // <i className="far fa-id-badge has-text-black"></i>
                 <i class="fas fa-plus"></i>
             )}
         </div>
-        // <form action='/add' method='post' encType='multipart/form-data'>
-        //     <input type='file' name='avatar'/>
-        //     <button onClick={onDrop}>Add</button>
-        // </form>
     )
 }
 

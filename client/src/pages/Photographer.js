@@ -9,34 +9,25 @@ import { ADD_FOLLOWING, UNFOLLOW, ADD_FOLLOWER, REMOVE_FOLLOWER } from '../utils
 const Photographer = (props) => {
     // unfollow functions
     const userToken = AuthService.getProfile();
-    // console.log(userToken)
 
     const {loading: loadingFollowing, data: dataFollowing} = useQuery(USER_PHOTOS, {
         variables: {userId: userToken.data._id}
     })
-    // console.log(dataFollowing.userPhotos._id)
-    // const {} = dataFollowing
+
     let userFollowing
     if(!loadingFollowing){
         userFollowing = dataFollowing.userPhotos.following
         console.log(userFollowing)
-        // if (userFollowing.some(e => e._id === _id)) {
-        //     console.log("true")
-        //   }
-        //   else {console.log("false")}
-
 
     }
-
     // unfollow functions end
     
 
     const { id } = useParams();
-    // alert(id)
+
     const {loading: currentPhotographer, data: photographerData} = useQuery(USER_PHOTOS, {
         variables: {userId: id}
     })
-    // console.log(data)
     let _id
     let photoArray
     let email
@@ -45,7 +36,6 @@ const Photographer = (props) => {
     let description
     if(!currentPhotographer){
         _id = photographerData.userPhotos._id
-        // console.log(data.userPhotos.photos)
         photoArray = photographerData.userPhotos.photos
         email = photographerData.userPhotos.email
         username = photographerData.userPhotos.username
@@ -133,15 +123,6 @@ const Photographer = (props) => {
                                 <div className="imageContainer">
                                 {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                 </div>
-
-                                {/* <footer className="card-footer is-size-4">
-                                    {/* {userProfile.isFavorite
-                                        // add like function here
-                                        ? <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a> :
-                                        <a href="#" className="card-footer-item"><i className="far fa-heart has-text-danger"></i></a>} */}
-                                    {/* <a href="#" className="card-footer-item"><i className="fas fa-heart has-text-danger"></i></a>
-                                </footer> */}
-
                             </div>
                         </div>
 
@@ -154,7 +135,6 @@ const Photographer = (props) => {
                                         
                                     </div>
                                     <div className="manageBtnWrapper">
-                                        {/* <button className="button has-text-light manageBtn"><AddImage/></button> */}
                                     </div>
                                    
                                 </div>
@@ -166,11 +146,9 @@ const Photographer = (props) => {
                         <div className="column is-three-fifths-tablet is-full-mobile">
                             <div className="columns is-mobile customMargin">
                                 <div className="column is-two-fourths-mobile p-0 mr-1">
-                                    {/* follow & unfollow function */}
                                     {followUnfollow()}
                                 </div>
                                 <div className="column is-two-fourths-mobile p-0 ml-1">
-                                    {/* <button className="button is-size-7-mobile is-primary modal-button is-hidden-tablet" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
                                     <a href={`mailto:${email}`}><button className="btnInProfile button is-size-7-mobile has-text-light">Email</button></a>
                                 </div>
                             </div>
@@ -181,9 +159,6 @@ const Photographer = (props) => {
                         <div className="column is-three-fifths pb-0 pt-0">
                             <div className="tabs is-centered mt-5">
                                 <ul>
-                                    {/* {userProfile.genres.map((singleGenre, idx) => (
-                                        <li key={idx} className={`is-pointer ${currentTab === singleGenre ? 'active' : ''}`} onClick={() => switchTab(singleGenre)}>{singleGenre}</li>
-                                    ))} */}
                                     <li className="is-pointer">Portfolio</li>
                                 </ul>
                             </div>
@@ -197,9 +172,6 @@ const Photographer = (props) => {
                                     <div key={idx} className="column is-one-third-tablet is-one-third-mobile imageWrapper p-1">
                                      
                                         <div className="imageContainer">
-                                            {/* <a>
-                                            <img className="portfolioImg" src={`/photo/${p._id}`} alt="" />
-                                            </a> */}
                                             <a href="javascript:void(0);">
                                             <img className="portfolioImg" src={`/photo/${p._id}`} onClick={() => openPhotoModal(`${p._id}`)} alt="Portfolio photo" />
                                             </a>

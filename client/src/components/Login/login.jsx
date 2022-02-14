@@ -3,68 +3,6 @@ import { LOGIN } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import AuthService from '../../utils/auth';
 
-// const Login = (props) => {
-//     const [login, { error }] = useMutation(LOGIN);
-//     const [password, setPassword] = useState('');
-//     const [email, setEmail] = useState('');
-//     const [formState, setFormState] = useState({ email: '', password: '' });
-
-
-//     // const history = useHistory();
-
-//     const showSignup = () => {
-//         props.changeSignup(true);
-//     }
-
-//     const handleLogin = async (event) => {
-//         // history.push('/dashboard');
-
-//         event.preventDefault();
-//         try {
-//             const mutationResponse = await login({
-//                 variables: {
-//                     email: formState.email,
-//                     password: formState.password
-//                 },
-//             });
-//             const token = mutationResponse.data.login.token;
-//             AuthService.login(token);
-//         } catch (e) {
-//             console.log(e);
-//         }
-
-//         if (!email || !password) {
-//             alert('Missing Email Address or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
-//             return
-//         }
-
-//         //do the login
-//         //do some type of api call here - fetch/axios/something
-//         // fetch("some url", {
-//         //     method: 'post',
-//         //     body: JSON.stringify({
-//         //         email,
-//         //         password
-//         //     })
-//         // }).then(response => response.json)
-//         //     .then(data => {
-//         //         console.log(data);
-//         //     })
-//         //     .catch(e => {
-//         //         console.log(e)
-//         //     })
-
-//         // axios.post("some url", {
-//         //     email,
-//         //     password
-//         // }).then(data => {
-//         //     console.log(data)
-//         // })
-//         //     .catch(e => {
-//         //         console.log(e)
-//         //     })
-//     }
-
 const Login = (props) => {
     const [login, { error }] = useMutation(LOGIN);
     const [password, setPassword] = useState('');
@@ -78,8 +16,6 @@ const Login = (props) => {
     }
 
     const handleLogin = async (event) => {
-        // history.push('/dashboard');
-
         event.preventDefault();
         try {
             const mutationResponse = await login({
@@ -96,7 +32,7 @@ const Login = (props) => {
         }
 
         if (!email || !password) {
-            alert('Missing Email Address or Password') //Or some fancy popup - react-popup, bulma probably has a modal, or bootstrap?
+            alert('Missing Email Address or Password') //Or some modal popup
             return
         }
     }
