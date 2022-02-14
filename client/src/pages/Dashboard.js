@@ -75,14 +75,16 @@ const Dashboard = (props) => {
         
     }
 
+    // get following data from photographers based on following ID
     let followingArr = []
-    // get following data based on following ID
+    
     for (var i = 0; i < following.length; i++) {
         var result = (photographers.filter(e => e._id === following[i]._id))
         console.log(result)
         followingArr.push(result[0])
     }
     console.log(followingArr)
+    // following end
 
     return (
         <>  

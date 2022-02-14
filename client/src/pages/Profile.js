@@ -192,7 +192,7 @@ const Profile = (props) => {
                                 <div className="imageContainer">
                                     {/* <img className="portfolioImg" src={`/photo/${p._id}`} alt="" /> */}
                                     {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
-                                    <button className="addProfile is-size-2-widescreen is-size-3-desktop is-size-5-tablet is-size-7-mobile"><AddProfile><i className="fas fa-plus"></i></AddProfile></button>
+                                    <button className="addProfile is-size-2-widescreen is-size-3-desktop is-size-5-tablet is-size-7-mobile"><AddProfile reloadFunc={refetchUser}><i className="fas fa-plus"></i></AddProfile></button>
                                     {/* <a href="#" className="card-footer-item pt-0 pb-1"><AddProfile><i className="fas fa-share-square has-text-black"></i></AddProfile></a> */}
                                 </div>
 
@@ -307,7 +307,7 @@ const Profile = (props) => {
                                 </div>
                                 <div className="column is-two-fourths-mobile p-0 ml-1">
                                     {/* <button className="button is-size-7-mobile is-primary modal-button is-hidden-tablet" data-target="modal" aria-haspopup="true" onClick={toggleEditModal}>Edit Profile</button> */}
-                                    <button className="btnInProfile button is-size-7-mobile has-text-light"><AddImage/></button>
+                                    <button className="btnInProfile button is-size-7-mobile has-text-light"><AddImage reloadFunc={refetchUser}/></button>
                                 </div>
                             </div>
                         </div>

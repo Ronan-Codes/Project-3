@@ -5,8 +5,10 @@ import {ADD_PROFILE_PHOTO} from '../../utils/mutations'
 import AuthService from '../../utils/auth'
 
 
-function AddProfile(){
-    const [addPhoto] = useMutation(ADD_PROFILE_PHOTO)
+function AddProfile(props){
+    const [addPhoto] = useMutation(ADD_PROFILE_PHOTO, {
+        onCompleted: props.reloadFunc
+    })
     const userInfo = AuthService.getProfile();
     // console.log(userInfo.data._id)
     const onDrop = useCallback(
