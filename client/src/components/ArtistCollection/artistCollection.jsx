@@ -29,7 +29,7 @@ const ArtistCollection = (props) => {
                                             </div>
                                         
                                         <h2 className="has-text-centered is-size-4-tablet is-size-7-mobile">{props.data.username}</h2>
-                                        <h3 className="has-text-centered has-text-grey searchedUserGenre">
+                                        <h3 className="has-text-centered is-size-6-tablet has-text-grey searchedUserGenre dashboardGenreFont">
                                             {genreNames}
                                         </h3>
                                     </div>

@@ -6,6 +6,7 @@ db.once('open', async () => {
 
     const genres = await Genre.insertMany([
         { name: 'Portrait' },
+        { name: 'Street' },
         { name: 'Fashion' },
         { name: 'Wedding' },
         { name: 'Travel' },
