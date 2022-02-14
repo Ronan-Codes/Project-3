@@ -108,7 +108,7 @@ const Dashboard = (props) => {
                                         <input type="radio" value="following" name="photographersSort" checked={currentSort === 'following'} onClick={() => setSort('following')}/> Following
                                     </label>
 
-                                    <label className="radio">
+                                    <label className="radio" onClick={() => setSort('genre')}>
                                         <input type="radio" value="genre" name="photographersSort" checked={currentSort === 'genre'} onClick={() => setSort('genre')}/>&nbsp;
 
                                                 <select className="dropdown-content py-1" value={currentGenre} onChange={e => sortGenre(e.currentTarget.value)}>
