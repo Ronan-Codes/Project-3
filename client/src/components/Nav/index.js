@@ -34,13 +34,15 @@ function Nav() {
   const handleLogout = (e) => {
       e.preventDefault();
       AuthService.logout();
+
+      window.location.assign('/login');
   }
   const loggedIn = AuthService.loggedIn()
   return (
     <nav className="navbar mainNav" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <div className="navbar-item">
-                  <a href="/dashboard">
+                  <a href="/">
                     <h1 className="title appName has-text-light">Pic'd Up</h1>
                   </a>
                 </div>
@@ -59,14 +61,22 @@ function Nav() {
                 <div className="navbar-end">
                     <div className="navbar-item ">
                         <div className="buttons">
-                            {loggedIn ? <Link className="button clearColor" to="/dashboard">
+                            {loggedIn ? <Link className="button clearColor" to="/">
                                 <i className="fas fa-home is-size-3 has-text-light"></i>
-                                </Link> : <Link className="button clearColor" to="/">
-                                <i className="fas fa-home is-size-3 has-text-light"></i>
-                            </Link>} 
+                                </Link> : <> 
+                                            <Link className="button clearColor" to="/">
+                                              <i className="fas fa-home is-size-3 has-text-light"></i>
+                                            </Link>
+
+                                            <Link className="button clearColor" to="/login">
+                                              <i className="fas fa-sign-in-alt is-size-3 has-text-light"></i>
+                                            </Link>
+                                            
+                                          </>
+                            } 
                             {loggedIn ? <Link className="button clearColor" to="/profile"><i className="fas fa-user-circle is-size-3 has-text-light"></i></Link> : ''}
                             {loggedIn ? <a className="button clearColor" onClick={handleLogout}>
-                                <i className="fas fa-sign-in-alt is-size-3 has-text-light"></i>
+                                <i className="fas fa-sign-out-alt is-size-3 has-text-light"></i>
                             </a>
                             : ''}
                         </div>

@@ -8,14 +8,15 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import {createUploadLink} from 'apollo-upload-client';
 
-import Home from './pages/Home';
+import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import AddImage from './components/AddImage';
-import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile/Profile';
 import Photographer from './pages/Photographer/Photographer'
+import Photographerx from './pages/Photographer/PhotographerLoggedOut'
+import Home from './pages/Home'
 
 import "./index.css"
 
@@ -46,8 +47,9 @@ function App() {
           <Nav />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/photographerx/:id" component={Photographerx} />
             <Route exact path="/photographer/:id" component={Photographer} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/add" component = {AddImage}/>

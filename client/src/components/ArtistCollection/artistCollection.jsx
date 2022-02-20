@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css"
+import Auth from '../../utils/auth'
+import userPng from "../../assets/images/user.png"
 
 const ArtistCollection = (props) => {
     let genreArr = []
@@ -19,6 +21,8 @@ const ArtistCollection = (props) => {
                 <div className="column dropShadow whiteBg">
                     <div className="columns is-mobile">
                         <div className="column is-one-quarter searchedUserPicCont">
+                        {
+                            Auth.loggedIn() ?
                             <Link to={`/photographer/${props.data._id}`}>
                                 <a href="javascript:void(0);"> 
                                     <div className="">
@@ -26,7 +30,7 @@ const ArtistCollection = (props) => {
                                                 {props.data.profilePhoto? 
                                                 (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />
                                                 ):
-                                                (<img src='/images/Profiles/user.png' className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />)}
+                                                (<img src={userPng} className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />)}
                                             </div>
                                         
                                         <h2 className="has-text-centered is-size-4-tablet is-size-7-mobile">{props.data.username}</h2>
@@ -36,6 +40,30 @@ const ArtistCollection = (props) => {
                                     </div>
                                 </a>   
                             </Link>
+                                :
+                            <Link to={`/photographerx/${props.data._id}`}>
+                                <a href="javascript:void(0);"> 
+                                    <div className="">
+                                            <div className="imageContainer">
+                                                {props.data.profilePhoto? 
+                                                (<img src={`/photo/${props.data.profilePhoto._id}`} className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />
+                                                ):
+                                                (
+                                                <img src={userPng} className="profilePic profilePicCustomPadding portfolioImg" alt="Profile picture" />
+                                                )}
+                                            </div>
+                                        
+                                        <h2 className="has-text-centered is-size-4-tablet is-size-7-mobile">{props.data.username}</h2>
+                                        <h3 className="has-text-centered is-size-6-tablet has-text-grey searchedUserGenre dashboardGenreFont">
+                                            {genreNames}
+                                        </h3>
+                                    </div>
+                                </a>   
+                            </Link>
+                        }
+
+
+                            
                         </div>
 
                         {/* Older version of the next div. Saved in case the new one breaks. */}

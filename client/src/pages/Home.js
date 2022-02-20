@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-import Login from "../components/Login/login";
-import SignUp from "../components/SignUp/signup";
+import React from "react";
+import Dashboard from "./Dashboard";
+import DashboardLoggedOut from "./DashboardLoggedOut"
+import AuthService from "../utils/auth"
 
-const Home = () => {
-  const [showSignup, setShowSignup] = useState(false);
+const Home = (props) => {
+    const loggedIn = AuthService.loggedIn()
 
-  const changeShowSignUp = (value) => {
-    setShowSignup(value);
-  }
+    return (
+        <>  
+            {loggedIn ? <Dashboard/>
+             : <DashboardLoggedOut/>
+            } 
+        </>
+    )
+}
 
-  return (
-    <>
-      {!showSignup ? <Login changeSignup={changeShowSignUp}/> : ''}
-      {showSignup ? <SignUp changeSignup={changeShowSignUp}/> : ''}
-    </>
-  );
-};
-
-export default Home;
+export default Home

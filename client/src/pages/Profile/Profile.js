@@ -6,6 +6,7 @@ import {USER_PHOTOS, QUERY_GENRES} from '../../utils/queries'
 import AddImage from "../../components/AddImage";
 import AddProfile from "../../components/AddProfile";
 import './style.css'
+import userPng from '../../assets/images/user.png'
 
 const Profile = (props) => {
     const userToken = AuthService.getProfile();
@@ -157,7 +158,7 @@ const Profile = (props) => {
                             <div className="">
 
                                 <div className="imageContainer">
-                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src='/images/Profiles/user.png' className="profilePic p-3 portfolioImg" alt="Profile picture" />}
+                                    {profilePic ? <img src={`/photo/${profilePic._id}`} className="profilePic p-3 portfolioImg" alt="Profile picture" /> : <img src={userPng} className="profilePic p-3 portfolioImg" alt="Profile picture" />}
                                     <button className="addProfile is-size-2-widescreen is-size-3-desktop is-size-5-tablet is-size-7-mobile"><AddProfile reloadFunc={refetchUser}><i className="fas fa-plus"></i></AddProfile></button>
                                 </div>
 

@@ -1,30 +1,11 @@
 import React, { useState, useEffect} from "react";
-import AuthService from "../../utils/auth"
 import { useParams } from 'react-router-dom';
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {USER_PHOTOS} from '../../utils/queries'
-
-import { ADD_FOLLOWING, UNFOLLOW, ADD_FOLLOWER, REMOVE_FOLLOWER } from '../../utils/mutations';
 import './style.css'
 import userPng from '../../assets/images/user.png'
 
 const Photographer = (props) => {
-    // unfollow functions
-    const userToken = AuthService.getProfile();
-
-    const {loading: loadingFollowing, data: dataFollowing} = useQuery(USER_PHOTOS, {
-        variables: {userId: userToken.data._id}
-    })
-
-    let userFollowing
-    if(!loadingFollowing){
-        userFollowing = dataFollowing.userPhotos.following
-        console.log(userFollowing)
-
-    }
-    // unfollow functions end
-    
-
     const { id } = useParams();
 
     const {loading: currentPhotographer, data: photographerData} = useQuery(USER_PHOTOS, {
@@ -55,63 +36,6 @@ const Photographer = (props) => {
     }
     const closePhotoModal = () => {
         setPhotoModal(!currentModalStatus)
-    }
-
-    // Following functions
-    const [addFollowing] = useMutation(ADD_FOLLOWING);
-    const [unfollow] = useMutation(UNFOLLOW);
-    const [addFollower] = useMutation(ADD_FOLLOWER);
-    const [removeFollower] = useMutation(REMOVE_FOLLOWER);
-
-    const handleFollowing = async() => {
-        try {
-          await addFollowing({
-            variables: { id: _id }
-          });
-        } catch (e) {
-          console.error(e);
-        }
-
-        try {
-            await addFollower({
-              variables: { id: _id }
-            });
-          } catch (e) {
-            console.error(e);
-          }
-    }
-
-    // unfollow functions contd..
-    const handleUnfollow = async() => {
-        try {
-          await unfollow({
-            variables: { id: _id }
-          });
-        } catch (e) {
-          console.error(e);
-        }
-
-        try {
-            await removeFollower({
-              variables: { id: _id }
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    // render Follow / Unfollow buttons
-    const followUnfollow = () => {
-        if (userFollowing.some(e => e._id === _id)) {
-            return(
-                <button className="btnInProfile button is-size-7-mobile is-primary" onClick={handleUnfollow}>Unfollow</button>
-            )
-          }
-          else {
-              return(
-                <button className="btnInProfile button is-size-7-mobile is-primary" onClick={handleFollowing}>Follow</button>
-              )
-          }
     }
     
 
@@ -146,11 +70,8 @@ const Photographer = (props) => {
 
                     <div className="columns is-centered has-text-centered is-mobile mx-2">
                         <div className="column is-three-fifths-tablet is-full-mobile">
-                            <div className="columns is-mobile customMargin">
-                                <div className="column is-two-fourths-mobile p-0 mr-1">
-                                    {followUnfollow()}
-                                </div>
-                                <div className="column is-two-fourths-mobile p-0 ml-1">
+                            <div className="columns is-mobile customMargin is-centered">
+                                <div className="column is-half p-0 ml-1">
                                     <a href={`mailto:${email}`}><button className="btnInProfile button is-size-7-mobile has-text-light">Email</button></a>
                                 </div>
                             </div>

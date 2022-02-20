@@ -27,7 +27,7 @@ const Login = (props) => {
             });
             const token = mutationResponse.data.login.token;
             AuthService.login(token);
-            window.location.assign('/dashboard');
+            window.location.assign('/');
         } catch (e) {
             console.log(e);
         }

@@ -32,7 +32,7 @@ const SignUp = (props) => {
         });
         const token = mutationResponse.data.addUser.token;
         AuthService.login(token);
-        window.location.assign('/dashboard');
+        window.location.assign('/');
         if (!formEmail || !formPassword || !formUsername) {
             alert('Missing Email Address or Username or Password') //Or modal popup
             return
