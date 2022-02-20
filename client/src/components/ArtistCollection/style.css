@@ -15,8 +15,36 @@
     object-fit: cover;
 }
 
+.dropShadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.browseContainer, .whiteBg {
+    background-color: white;
+}
+
+.searchedUserPicCont {
+    border-right: 1px solid rgb(206, 206, 206);
+}
+
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+@media screen and (min-width: 769px) {
+    .profilePicCustomPadding {
+        padding: 1.2rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .dashboardGenreFont {
         font-size: .6em;
+    }
+
+    .profilePicCustomPadding {
+        padding: .1rem;
     }
 }

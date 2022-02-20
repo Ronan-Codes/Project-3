@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import AuthService from "../../utils/auth";
 import { Link } from "react-router-dom";
+import './style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
 

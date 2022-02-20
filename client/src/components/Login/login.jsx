@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LOGIN } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import AuthService from '../../utils/auth';
+import './style.css'
 
 const Login = (props) => {
     const [login, { error }] = useMutation(LOGIN);

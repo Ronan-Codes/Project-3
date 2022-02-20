@@ -14,8 +14,8 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import AddImage from './components/AddImage';
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import Photographer from './pages/Photographer'
+import Profile from './pages/Profile/Profile';
+import Photographer from './pages/Photographer/Photographer'
 
 import "./index.css"
 
