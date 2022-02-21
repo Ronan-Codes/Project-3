@@ -5,6 +5,10 @@
     bottom: 4%
 }
 
+.errorColor {
+    color: gray;
+}
+
 /* .signupForm {
     margin-top: 1rem;
     padding-top: 1rem;

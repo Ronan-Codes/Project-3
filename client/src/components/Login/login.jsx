@@ -40,42 +40,43 @@ const Login = (props) => {
 
     return (
         <>
-            <section class="hero is-fullheight loginFormWrapper">
-                <div class="hero-body">
-                    <div class="container">
-                        <div class="columns is-centered">
-                            <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                                <section class="box">
-                                    <div class="loginForm">
-                                        <div class="field">
-                                            <div class="control has-icons-left">
-                                                <input id="loginEmail" type="email" placeholder="Email" class="input" required
+            <section className="hero is-fullheight loginFormWrapper">
+                <div className="hero-body">
+                    <div className="container">
+                        <div className="columns is-centered">
+                            <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+                                <section className="box">
+                                    <div className="loginForm">
+                                        <div className="field">
+                                            <div className="control has-icons-left">
+                                                <input id="loginEmail" type="email" placeholder="Email" className="input" required
                                                     value={email}
                                                     onChange={e => setEmail(e.target.value)}
                                                 />
-                                                <span class="icon is-small is-left">
-                                                    <i class="fa fa-envelope"></i>
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-envelope"></i>
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="field">
-                                            <div class="control has-icons-left">
-                                                <input id="loginPassword" type="password" placeholder="Password" class="input" required
+                                        <div className="field">
+                                            <div className="control has-icons-left">
+                                                <input id="loginPassword" type="password" placeholder="Password" className="input" required
                                                     value={password}
                                                     onChange={e => setPassword(e.target.value)}
                                                 />
-                                                <span class="icon is-small is-left">
-                                                    <i class="fa fa-lock"></i>
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-lock"></i>
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="field has-text-centered">
-                                            <button class="button is-success" onClick={handleLogin}>
+                                        <div className="field has-text-centered">
+                                            <button className="button is-success" onClick={handleLogin}>
                                                 Login
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="has-text-centered"><a onClick={showSignup}>Signup?</a></div>
+                                    <div className="has-text-centered"><a onClick={showSignup}>Signup?</a></div>
+                                    {error && <span className="is-size-6 errorColor">The provided credentials are incorrect. Try again or signup!</span>}
                                 </section>
                             </div>
                         </div>

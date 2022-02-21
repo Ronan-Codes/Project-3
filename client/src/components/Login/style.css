@@ -4,3 +4,7 @@
     background-color: rgba(241, 241, 241, 0.904);
     bottom: 4%
 }
+
+.errorColor {
+    color: gray;
+}

@@ -8,7 +8,7 @@ const SignUp = (props) => {
     const [formUsername, setUsername] = useState('');
     const [formPassword, setPassword] = useState('');
     const [formEmail, setEmail] = useState('');
-    const [addUser] = useMutation(ADD_USER);
+    const [addUser, { error }] = useMutation(ADD_USER);
 
     // const history = useHistory();
 
@@ -89,6 +89,7 @@ const SignUp = (props) => {
                                         </div>
                                     </div>
                                     <div class="has-text-centered"><a onClick={showSignup}>Login</a></div>
+                                    {error && <span className="is-size-6 errorColor">Invalid entry, please try again.</span>}
                                 </section>
                             </div>
                         </div>
